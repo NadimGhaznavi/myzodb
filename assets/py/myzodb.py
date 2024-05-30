@@ -88,4 +88,8 @@ def main(args):
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    main(args)
+    try:
+        main(args)
+    except Exception as e:
+        # Handle any errors and shutdown gracefully
+        print(f"An error occured: {str(e)}")
