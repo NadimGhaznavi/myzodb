@@ -21,8 +21,12 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 html:
+	rm -rf $(BUILDDIR)
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-	cd $(HTMLDIR) && ln -s _static static
+	cd $(HTMLDIR) && find . -type f -name '*.html' -exec sed -i 's/_static/static/g' {} +
+	cd $(HTMLDIR) && find . -type f -name '*.html' -exec sed -i 's/_static/static/g' {} +
+	cd $(HTMLDIR) && mv _static static
+	cd $(HTMLDIR) && mv _sources sources
 
 clean:
 	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS)  $(O)
