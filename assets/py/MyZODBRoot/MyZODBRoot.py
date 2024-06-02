@@ -3,8 +3,8 @@ class MyZODBRoot:
     Abstract root class for the ZenoDB project, inheriting from ZODB.
 
     Attributes:
-    - _root: The root object of the ZODB database.
-    - _name: The name of the object.
+    * _root: The root object of the ZODB database.
+    * _name: The name of the object.
 
     """
 def __init__(self, root, name):
