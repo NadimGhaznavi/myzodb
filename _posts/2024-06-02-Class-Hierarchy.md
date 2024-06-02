@@ -7,18 +7,17 @@ date: 2024-06-02
 # Class Hierarchy
 
 <pre class="mermaid">
-  graph TD
-  A[Root Object] <-- B[XMR]
-  A <-- C[Miner]
-  A <-- D[Transaction]
-  D <-- E[Share Transaction]
-  D <-- F[XMR Transaction]
-  A <-- B[MyZODB]
-  A <-- G[Wallet]
-  A <-- H[P2Pool]
-  A <-- I[P2Pool Daemon]
-  A <-- J[Chart]
-  J <-- K[Earnings Chart]
+  flowchart TD
+  A(Root Object) --- B(XMR)
+  A --- C(Transaction)
+  C --- D(XMR Transaction)
+  C --- E(Share Transaction)
+  A --- F(Miner)
+  A --- G(Wallet)
+  A --- H(Chart)
+  H --- I(Earnings Chart)
+  A --- J(P2Pool)
+  A --- K(P2Pool Daemon)
 </pre>
   
   
