@@ -1,0 +1,77 @@
+Welcome to MyZODB's documentation!
+**********************************
+
+This script, myzodb.py, is the entry point of the MyZODB application.
+It is responsible  for initializing the database, managing
+connections, and running the application.
+
+class assets.py.myzodb.PublicClass
+
+   Bases: "object"
+
+   This is a public class within the myzodb module.
+
+   __weakref__
+
+      list of weak references to the object (if defined)
+
+assets.py.myzodb.execute_load_xmr_earnings_from_csv() -> None
+
+   This function is called from the interactive MyZODB menu. If a user
+   chooses the option to load XMR earnings from a CSV file, then the
+   user needs to  specify where that CSV file is located. This
+   functionality is implemented here. Once the CSV file has been
+   provided this function calls the
+   load_xmr_earnings_from_csv(csv_file) function.
+
+assets.py.myzodb.exit_app(return_code) -> None
+
+   Exit gracefully. Close the ZODB database if it is open. Exits with
+   a return  code of zero unless a return code was passed in.
+
+assets.py.myzodb.ini_file_path = '/opt/prod/websites/myzodb/data/myzodb.ini'
+
+   Global Variables
+
+   The myzodb.py script uses two global variables: * zodb_file_path :
+   The path to the backend ZODB database which houses all of the data.
+   * zodb_handle : The handle for the backend ZODB database *
+   zodb_root : The root of the backend ZODB database * ini_file_path :
+   The configuration file for the MyZODB application. The default
+   value for this global is /opt/prod/websites/myzodb/data/myzodb.ini.
+   This is hard-coded into the application.
+
+assets.py.myzodb.interactive_menu() -> None
+
+   Print an interactive menu, providing the user with a menu interface
+   for executing MyZODB functions. Also, process the user's choice.
+
+assets.py.myzodb.load_xmr_earnings_from_csv(csv_file: str) -> None
+
+   Import appropriate xmr_mining functions and classes, and execute
+   the code to import XMR mining data from a CSV file. Args: *
+   csv_file (str): Path to the CSV file containing the XMR mining data
+   Returns: * None
+
+assets.py.myzodb.main(args: Namespace) -> None
+
+   This is the main() function for the MyZODB application. It parses
+   the command line arguments and executes the specified actions. If
+   no command line arguments were provided, then an interactive menu
+   is printed instead.
+
+assets.py.myzodb.print_status() -> None
+
+   Print the status of the MyZODB application. Currently this is the
+   following: * Path to the backend ZODB object database * Path to the
+   configuration (INI) file for the MyZODB application Returns: * None
+
+assets.py.myzodb.public_function()
+
+   This is a public function within the myzodb module.
+
+assets.py.myzodb.setup_zodb(zodb_file: str) -> None
+
+   Set up the ZODB database by initializing the storage, database,
+   connection, and root. Args: * zodb_file (str): Path to the ZODB
+   database file Returns: * None

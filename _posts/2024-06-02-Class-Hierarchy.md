@@ -4,24 +4,66 @@ title: MyZODB Class Hierarchy
 date: 2024-06-02
 ---
 
-# Class Hierarchy
-
+# Class Diagram
 <pre class="mermaid">
-  flowchart TD
-  A(Root Object) --- B(XMR)
-  A --- C(Transaction)
-  C --- D(XMR Transaction)
-  C --- E(Share Transaction)
-  A --- F(Miner)
-  A --- G(Wallet)
-  A --- H(Chart)
-  H --- I(Earnings Chart)
-  A --- J(P2Pool)
-  A --- K(P2Pool Daemon)
+    classDiagram
+    note "MyZODB Classes"
+    Root <|-- XMR
+    Root <|-- Transaction
+    Transaction <|-- ShareTransaction
+    Transaction <|-- XMRTransaction
+    Root <|-- Miner
+    Root <|-- Wallet
+    Root <|-- P2Pool
+    Root <|-- P2PoolDaemon
+    Root <|-- Chart
+    class Root{
+        _root
+        get_root()
+        set_root()
+        __str__()
+    }
+    class XMR{
+        amount
+    }
+    class Transaction{
+        to (anObject) 
+        from (anObject)
+        amount (float)
+        timestamp (datetime)
+    }
+    class ShareTransaction{
+        miner (Miner)
+        effort (float)
+        difficulty (float)
+    }
+    class Chart{
+        csv_file (string)
+        read_csv()
+        write_csv()
+    }
+    class Miner{
+        hostname (string)
+        accept_share()
+        blockfound()
+    }
+    class Wallet{
+        balance (float)
+        transactions (XMRTransactions)
+        accept_trans(XNRTransaction)
+    }
+    class P2Pool{
+        send_trans(Transaction)
+    }
+    class P2PoolDaemon{
+        miners (Miners)
+        logfile (string)
+        monitor_log()
+    }
 </pre>
-  
   
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
   mermaid.initialize({ startOnLoad: true, theme: 'dark'});
 </script> 
+
