@@ -7,12 +7,14 @@ class MyZODBRoot:
     * _name: The name of the object.
 
     """
-def __init__(self, root, name):
+  def __init__(self, root, name):
         self._root = root
+        self._name = name
+    
 
-    def get_root(self):
-      """
-      Returns the root object of the ZODB database.
+  def get_root(self):
+    """
+    Returns the root object of the ZODB database.
 
       Returns:
       * The root object of the ZODB database.
@@ -29,6 +31,8 @@ def __init__(self, root, name):
 
       """
       self._root = root
+
+
 
     def __str__(self):
       """

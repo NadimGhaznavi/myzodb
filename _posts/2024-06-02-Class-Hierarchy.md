@@ -8,19 +8,22 @@ date: 2024-06-02
 <pre class="mermaid">
     classDiagram
     note "MyZODB Classes"
-    Root <|-- XMR
-    Root <|-- Transaction
+    persistent.Persistent <|-- MyZODBRoot
+    MyZODBRoot <|-- XMR
+    MyZODBRoot <|-- Transaction
     Transaction <|-- ShareTransaction
     Transaction <|-- XMRTransaction
-    Root <|-- Miner
-    Root <|-- Wallet
-    Root <|-- P2Pool
-    Root <|-- P2PoolDaemon
-    Root <|-- Chart
-    class Root{
-        _root
+    MyZODBRoot <|-- Miner
+    MyZODBRoot <|-- Wallet
+    MyZODBRoot <|-- P2Pool
+    MyZODBRoot <|-- P2PoolDaemon
+    MyZODBRoot <|-- Chart
+    MyZODBRoot <|-- MyZODB
+    class MyZODBRoot{
+        db (ZODB.DB)
         get_root()
         set_root()
+        update()
         __str__()
     }
     class XMR{
