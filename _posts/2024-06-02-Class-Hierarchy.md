@@ -8,7 +8,7 @@ date: 2024-06-02
 <pre class="mermaid">
     classDiagram
     note "MyZODB Classes"
-    persistent.Persistent <|-- MyZODBRoot
+    Persistent <|-- MyZODBRoot
     MyZODBRoot <|-- XMR
     MyZODBRoot <|-- Transaction
     Transaction <|-- ShareTransaction
