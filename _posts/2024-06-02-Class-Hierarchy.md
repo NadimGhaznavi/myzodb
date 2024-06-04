@@ -19,6 +19,9 @@ date: 2024-06-02
     MyZODBRoot <|-- P2PoolDaemon
     MyZODBRoot <|-- Chart
     MyZODBRoot <|-- MyZODB
+    MyZODBROOT <|-- History
+    Miner --o History
+
     class MyZODBRoot{
         db (ZODB.DB)
         get_root()
@@ -45,8 +48,13 @@ date: 2024-06-02
         read_csv()
         write_csv()
     }
+    class History{
+        share_transaction_rec (ShareTransactions)
+        xmr_transaction(XMRTransactions)
+    }
     class Miner{
         hostname (string)
+        history (History)
         accept_share()
         blockfound()
     }
