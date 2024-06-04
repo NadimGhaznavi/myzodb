@@ -16,8 +16,7 @@ date: 2024-06-02
   MyZODBRoot <|-- Wallet
   MyZODBRoot <|-- P2PoolDaemon
   MyZODBRoot <|-- Chart
-  MyZODBRoot <|-- MyZODB
-  MyZODBROOT <|-- History
+  MyZODBRoot <|-- History
   Miner --o History
   History --o XMRTransaction
   History --o ShareTransaction
