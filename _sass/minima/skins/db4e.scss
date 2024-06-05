@@ -1,10 +1,201 @@
 @charset "utf-8";
 
+// db4e skin
+// ==============
+// Created by Sander Voerman <mailto:sander@savoerman.nl> using the Solarized
+// color scheme by Ethan Schoonover <https://ethanschoonover.com/db4earized>.
 
-$color-scheme-auto: false;
-$color-scheme-dark: true;
+// This style sheet implements three options for the minima.skin setting:
+// "db4earized-light" for light mode, "db4earized-dark" for dark mode, and
+// "db4earized" for light or dark mode depending on user preference.
+$db4e-is-auto: true !default;
+$db4e-is-dark: false !default;
 
-@import "minima/skins/auto";
 
-text-color:         #00ff51;
-link-hover-color:   #ff0000;
+// Color scheme
+// ------------
+// The inline comments show the canonical L*a*b values for each color.
+
+$db4e-base03:   #002b36;  // 15 -12 -12
+$db4e-base02:   #073642;  // 20 -12 -12
+$db4e-base01:   #586e75;  // 45 -07 -07
+$db4e-base00:   #657b83;  // 50 -07 -07
+$db4e-base0:    #839496;  // 60 -06 -03
+$db4e-base1:    #93a1a1;  // 65 -05 -02
+$db4e-base2:    #eee8d5;  // 92 -00  10
+$db4e-base3:    #fdf6e3;  // 97  00  10
+$db4e-yellow:   #b58900;  // 60  10  65
+$db4e-orange:   #cb4b16;  // 50  50  55
+$db4e-red:      #dc322f;  // 50  65  45
+$db4e-magenta:  #d33682;  // 50  65 -05
+$db4e-violet:   #6c71c4;  // 50  15 -45
+$db4e-blue:     #268bd2;  // 55 -10 -45
+$db4e-cyan:     #2aa198;  // 60 -35 -05
+$db4e-green:    #859900;  // 60 -20  65
+
+
+// Mixed colors
+// ------------
+// While not part of the original Solarized base tones, these derived tones
+// are meant to replicate the visual style of the classic skin. They should
+// not be used in cases where sufficiently contrasting colors are needed.
+
+$db4e-light-mix1:  mix($db4e-base1, $db4e-base3);
+$db4e-light-mix2:  mix($db4e-blue, $db4e-base00);
+$db4e-light-mix3:  mix($db4e-base2, $db4e-base3);
+$db4e-dark-mix1:   mix($db4e-base01, $db4e-base03);
+$db4e-dark-mix2:   mix($db4e-blue, $db4e-base0);
+$db4e-dark-mix3:   mix($db4e-base02, $db4e-base03);
+
+
+// Mode selection
+// --------------
+
+$db4e-mono3:    $db4e-base3;
+$db4e-mono2:    $db4e-base2;
+$db4e-mono1:    $db4e-base1;
+$db4e-mono00:   $db4e-base00;
+$db4e-mono01:   $db4e-base01;
+$db4e-mix1:     $db4e-light-mix1;
+$db4e-mix2:     $db4e-light-mix2;
+$db4e-mix3:     $db4e-light-mix3;
+
+@if $db4e-is-dark {
+  $db4e-mono3:  $db4e-base03;
+  $db4e-mono2:  $db4e-base02;
+  $db4e-mono1:  $db4e-base01;
+  $db4e-mono00: $db4e-base0;
+  $db4e-mono01: $db4e-base1;
+  $db4e-mix1:   $db4e-dark-mix1;
+  $db4e-mix2:   $db4e-dark-mix2;
+  $db4e-mix3:   $db4e-dark-mix3;
+}
+
+@if $db4e-is-auto {
+  :root {
+    --db4earized-mono3:  #{$db4e-base3};
+    --db4earized-mono2:  #{$db4e-base2};
+    --db4earized-mono1:  #{$db4e-base1};
+    --db4earized-mono00: #{$db4e-base00};
+    --db4earized-mono01: #{$db4e-base01};
+    --db4earized-mix1:   #{$db4e-light-mix1};
+    --db4earized-mix2:   #{$db4e-light-mix2};
+    --db4earized-mix3:   #{$db4e-light-mix3};
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --db4earized-mono3:  #{$db4e-base03};
+      --db4earized-mono2:  #{$db4e-base02};
+      --db4earized-mono1:  #{$db4e-base01};
+      --db4earized-mono00: #{$db4e-base0};
+      --db4earized-mono01: #{$db4e-base1};
+      --db4earized-mix1:   #{$db4e-dark-mix1};
+      --db4earized-mix2:   #{$db4e-dark-mix2};
+      --db4earized-mix3:   #{$db4e-dark-mix3};
+    }
+  }
+
+  $db4e-mono3:  var(--db4earized-mono3);
+  $db4e-mono2:  var(--db4earized-mono2);
+  $db4e-mono1:  var(--db4earized-mono1);
+  $db4e-mono00: var(--db4earized-mono00);
+  $db4e-mono01: var(--db4earized-mono01);
+  $db4e-mix1:   var(--db4earized-mix1);
+  $db4e-mix2:   var(--db4earized-mix2);
+  $db4e-mix3:   var(--db4earized-mix3);
+}
+
+
+// Minima color variables
+// ----------------------
+
+$brand-color:           $db4e-mono1 !default;
+$brand-color-light:     $db4e-mix1 !default;
+$brand-color-dark:      $db4e-mono00 !default;
+
+$site-title-color:      $db4e-mono00 !default;
+
+$text-color:            $db4e-mono01 !default;
+$background-color:      $db4e-mono3 !default;
+$code-background-color: $db4e-mono2 !default;
+
+$link-base-color:       $db4e-blue !default;
+$link-visited-color:    $db4e-mix2 !default;
+$link-hover-color:      $db4e-mono00 !default;
+
+$border-color-01:       $brand-color-light !default;
+$border-color-02:       $db4e-mono1 !default;
+$border-color-03:       $db4e-mono00 !default;
+
+$table-text-color:      $db4e-mono00 !default;
+$table-zebra-color:     $db4e-mix3 !default;
+$table-header-bg-color: $db4e-mono2 !default;
+$table-header-border:   $db4e-mono1 !default;
+$table-border-color:    $db4e-mono1 !default;
+
+
+// Syntax highlighting styles
+// --------------------------
+
+.highlight {
+  .c     { color: $db4e-mono1; font-style: italic } // Comment
+  .err   { color: $db4e-red } // Error
+  .k     { color: $db4e-mono01; font-weight: bold } // Keyword
+  .o     { color: $db4e-mono01; font-weight: bold } // Operator
+  .cm    { color: $db4e-mono1; font-style: italic } // Comment.Multiline
+  .cp    { color: $db4e-mono1; font-weight: bold } // Comment.Preproc
+  .c1    { color: $db4e-mono1; font-style: italic } // Comment.Single
+  .cs    { color: $db4e-mono1; font-weight: bold; font-style: italic } // Comment.Special
+  .gd    { color: $db4e-red } // Generic.Deleted
+  .gd .x { color: $db4e-red } // Generic.Deleted.Specific
+  .ge    { color: $db4e-mono00; font-style: italic } // Generic.Emph
+  .gr    { color: $db4e-red } // Generic.Error
+  .gh    { color: $db4e-mono1 } // Generic.Heading
+  .gi    { color: $db4e-green } // Generic.Inserted
+  .gi .x { color: $db4e-green } // Generic.Inserted.Specific
+  .go    { color: $db4e-mono00 } // Generic.Output
+  .gp    { color: $db4e-mono00 } // Generic.Prompt
+  .gs    { color: $db4e-mono01; font-weight: bold } // Generic.Strong
+  .gu    { color: $db4e-mono1 } // Generic.Subheading
+  .gt    { color: $db4e-red } // Generic.Traceback
+  .kc    { color: $db4e-mono01; font-weight: bold } // Keyword.Constant
+  .kd    { color: $db4e-mono01; font-weight: bold } // Keyword.Declaration
+  .kp    { color: $db4e-mono01; font-weight: bold } // Keyword.Pseudo
+  .kr    { color: $db4e-mono01; font-weight: bold } // Keyword.Reserved
+  .kt    { color: $db4e-violet; font-weight: bold } // Keyword.Type
+  .m     { color: $db4e-cyan } // Literal.Number
+  .s     { color: $db4e-magenta } // Literal.String
+  .na    { color: $db4e-cyan } // Name.Attribute
+  .nb    { color: $db4e-blue } // Name.Builtin
+  .nc    { color: $db4e-violet; font-weight: bold } // Name.Class
+  .no    { color: $db4e-cyan } // Name.Constant
+  .ni    { color: $db4e-violet } // Name.Entity
+  .ne    { color: $db4e-violet; font-weight: bold } // Name.Exception
+  .nf    { color: $db4e-blue; font-weight: bold } // Name.Function
+  .nn    { color: $db4e-mono00 } // Name.Namespace
+  .nt    { color: $db4e-blue } // Name.Tag
+  .nv    { color: $db4e-cyan } // Name.Variable
+  .ow    { color: $db4e-mono01; font-weight: bold } // Operator.Word
+  .w     { color: $db4e-mono1 } // Text.Whitespace
+  .mf    { color: $db4e-cyan } // Literal.Number.Float
+  .mh    { color: $db4e-cyan } // Literal.Number.Hex
+  .mi    { color: $db4e-cyan } // Literal.Number.Integer
+  .mo    { color: $db4e-cyan } // Literal.Number.Oct
+  .sb    { color: $db4e-magenta } // Literal.String.Backtick
+  .sc    { color: $db4e-magenta } // Literal.String.Char
+  .sd    { color: $db4e-magenta } // Literal.String.Doc
+  .s2    { color: $db4e-magenta } // Literal.String.Double
+  .se    { color: $db4e-magenta } // Literal.String.Escape
+  .sh    { color: $db4e-magenta } // Literal.String.Heredoc
+  .si    { color: $db4e-magenta } // Literal.String.Interpol
+  .sx    { color: $db4e-magenta } // Literal.String.Other
+  .sr    { color: $db4e-green } // Literal.String.Regex
+  .s1    { color: $db4e-magenta } // Literal.String.Single
+  .ss    { color: $db4e-magenta } // Literal.String.Symbol
+  .bp    { color: $db4e-mono1 } // Name.Builtin.Pseudo
+  .vc    { color: $db4e-cyan } // Name.Variable.Class
+  .vg    { color: $db4e-cyan } // Name.Variable.Global
+  .vi    { color: $db4e-cyan } // Name.Variable.Instance
+  .il    { color: $db4e-cyan } // Literal.Number.Integer.Long
+}
