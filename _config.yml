@@ -6,14 +6,12 @@ author:
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
 description: >
-  A website to document the *Database 4 Everything*, *db4e*, project. 
+  A website to document the Database 4 Everything project. 
 
 # Build settings
 
 # If you clone the Minima repo and build locally, use this setting.
 remote_theme: pages-themes/leap-day@v0.2.0
-minima:
-  skin: dark
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -22,8 +20,8 @@ plugins:
 
 # If you want to link only specific pages in your header, use this and add the path to the pages
 # in order as they should show up.
-header_pages:
-  - about.md
+#header_pages:
+#  - about.md
 
 # Set to `true` to show excerpts on the homepage.
 #show_excerpts: false
