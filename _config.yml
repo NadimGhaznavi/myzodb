@@ -17,7 +17,7 @@ plugins:
   - jekyll-seo-tag
 
 minima:
-  skin: dark
+  skin: db4e
 
 # Theme-specific settings
 
