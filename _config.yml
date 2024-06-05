@@ -11,7 +11,9 @@ description: >
 # Build settings
 
 # If you clone the Minima repo and build locally, use this setting.
-remote_theme: pages-themes/time-machine@0.2.0
+theme: minima
+minima:
+  skin: dark
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
