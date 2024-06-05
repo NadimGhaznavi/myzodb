@@ -1,8 +1,10 @@
 @charset "utf-8";
 
+
 $color-scheme-auto: false;
 $color-scheme-dark: true;
+
 @import "minima/skins/auto";
 
-$dm-text-color:         #00ff51 !default;
-$dm-link-hover-color:   #ff0000 !default;
+text-color:         #00ff51;
+link-hover-color:   #ff0000;
