@@ -11,13 +11,14 @@ description: >
 # Build settings
 
 # If you clone the Minima repo and build locally, use this setting.
-theme: minima
+remote_theme: jekyl/minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
 minima:
   skin: dark
+
 # Theme-specific settings
 
 # If you want to link only specific pages in your header, use this and add the path to the pages
