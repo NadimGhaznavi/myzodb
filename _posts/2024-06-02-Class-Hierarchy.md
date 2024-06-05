@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MyZODB Class Hierarchy
+title: Class Hierarchy
 date: 2024-06-02
 ---
 
@@ -9,15 +9,15 @@ date: 2024-06-02
 <pre class="mermaid">
   classDiagram
     note "MyZODB Classes"
-    MyZODBRoot <|-- XMR
-    MyZODBRoot <|-- Transaction
+    Db4eRoot <|-- XMR
+    Db4eRoot <|-- Transaction
     Transaction <|-- ShareTransaction
     Transaction <|-- XMRTransaction
-    MyZODBRoot <|-- Miner
-    MyZODBRoot <|-- Wallet
-    MyZODBRoot <|-- P2PoolDaemon
-    MyZODBRoot <|-- Chart
-    MyZODBRoot <|-- History
+    Db4eRoot <|-- Miner
+    Db4eRoot <|-- Wallet
+    Db4eRoot <|-- P2PoolDaemon
+    Db4eRoot <|-- Chart
+    Db4eRoot <|-- History
     Miner --o History
     History --o XMRTransaction
     History --o ShareTransaction
@@ -42,7 +42,7 @@ date: 2024-06-02
       accept_share()
       blockfound()
     }
-    class MyZODBRoot{
+    class Db4doot{
       +ZODB.DB db
       get_root()
       set_root(self.db)
