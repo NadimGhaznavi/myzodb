@@ -45,7 +45,7 @@ date: 2024-06-02
     class MyZODBRoot{
       +ZODB.DB db
       get_root()
-      set_root(MyZODBRoot)
+      set_root(self.db)
       commit()
       _setup_zodb(ZODB.DB)
       __str__()
