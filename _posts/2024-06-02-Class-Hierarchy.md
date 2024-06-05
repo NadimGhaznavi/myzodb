@@ -5,6 +5,7 @@ date: 2024-06-02
 ---
 
 # Class Diagram
+
 <pre class="mermaid">
   classDiagram
     note "MyZODB Classes"
@@ -22,6 +23,7 @@ date: 2024-06-02
     History --o ShareTransaction
     XMRTransaction --o XMR
     Wallet --o XMRTransaction
+    ShareTransaction --o Miner
 
     class Chart{
       +String csv_file
@@ -44,7 +46,8 @@ date: 2024-06-02
       +ZODB.DB db
       get_root()
       set_root(MyZODBRoot)
-      update()
+      commit()
+      _setup_zodb(ZODB.DB)
       __str__()
     }
     class P2PoolDaemon{
@@ -56,14 +59,13 @@ date: 2024-06-02
       +Miner miner
       +Float effort
       +Float difficulty
-      execute()
+      +DateTime timestamp
     }
     class Transaction{
       +String to
       +String from
       +XMR amount
       +DateTime timestamp
-      execute()
     }
     class Wallet{
       +Float balance
