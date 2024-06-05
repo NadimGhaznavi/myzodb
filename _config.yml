@@ -11,11 +11,13 @@ description: >
 # Build settings
 
 # If you clone the Minima repo and build locally, use this setting.
-remote_theme: pages-themes/leap-day@v0.2.0
+theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+minima:
+  skin: dark
 # Theme-specific settings
 
 # If you want to link only specific pages in your header, use this and add the path to the pages
