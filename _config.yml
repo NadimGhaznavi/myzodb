@@ -1,4 +1,4 @@
-title: My ZODB - An Object Database for Holding Everything
+title: Database 4 Everything
 author:
   name: NadimGhaznavi
   email: nghaznavi@gmail.com
@@ -6,18 +6,12 @@ author:
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
 description: >
-  A website to document the myzodb project, a ZODB instance to store data about anything I'm interested in.
+  A website to document the *Database 4 Everything*, *db4e*, project. 
 
 # Build settings
 
 # If you clone the Minima repo and build locally, use this setting.
-remote_theme: jekyll/minima
-
-# As of November 2023, GitHub Pages still uses Minima 2.5.1 (https://pages.github.com/versions/). 
-# If you want to use the latest Minima version on GitHub Pages, use the following setting and 
-# add a line comment on "theme: minima" above.
-#remote_theme: jekyll/minima
-
+remote_theme: pages-themes/hacker@v0.2.0
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

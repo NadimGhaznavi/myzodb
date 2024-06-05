@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-This script, myzodb.py, is the entry point of the MyZODB application. It is responsible 
-for initializing the database, managing connections, and running the application.
+This script, db4e.py, is the entry point of the "Database 4 Everything" application. 
+It is responsible for initializing the database, managing connections, and running the 
+application.
 """
 
 import os
@@ -17,73 +18,43 @@ Include supporting modules:
 * argparse
 * configparser
 """
-# Declare the location of the ZODB database file and the application INI files as globals
-zodb_file_path = ""
-zodb_handle = None
-zodb_root = None
-ini_file_path = os.path.abspath("/opt/prod/websites/myzodb/data/myzodb.ini")
+
+ini_file = "db4e.ini"
 """
 Global Variables
 
 The myzodb.py script uses two global variables:
-* zodb_file_path : The path to the backend ZODB database which houses all of the data.
-* zodb_handle : The handle for the backend ZODB database
-* zodb_root : The root of the backend ZODB database
-* ini_file_path : The configuration file for the MyZODB application. The default value for this global is /opt/prod/websites/myzodb/data/myzodb.ini. This is hard-coded into the application.
+* ini_file : The configuration file for the db4e application. The default value for this global 
+is db4e.ini. The configuraiton file should be in the same directory as this db4e.sh
+script. This default is hard-coded into the application
+
+See command line arguments for information on overriding this at runtime.
 """
 
 # Deal with command line args
 parser = argparse.ArgumentParser(description='My ZODB Application')
-parser.add_argument('-i', '--ini_file', type=str, default=ini_file_path, help='Path to the INI file')
+parser.add_argument('-i', '--ini_file', type=str, default=ini_file, help='Path to the INI file')
 parser.add_argument('-a', '--action', type=str, help='Action to perform')
 parser.add_argument('-c', '--csv_file', type=str, default=None, help='Path to the CSV file')
 """
 Command Line Arguments
 
 The myzodb.py script supports the following command line arguments:
-* [-i | --ini_file] : Path to the configuration file for the myzodb.py application
+* [-i | --ini_file] : Path to the configuration file for the db4e application
 * [-a | --action] : An action. See function documentation for supported actions.
 * [-c | --csv_file] : The path to a CSV file. This is used by some actions to import or export data.
 """
 
-"""
-Module-level docstring for myzodb.
-"""
-
-def public_function():
+class Db4e(Db4eRoot):
   """
-  This is a public function within the myzodb module.
+  This class is at the center of this control script. The script, db4e.py, that contains this 
+  class definition should be invoked directly to interact with the db4e application.
   """
   pass
 
-class PublicClass:
-  """
-  This is a public class within the myzodb module.
-  """
-  pass
-
-def setup_zodb(zodb_file: str) -> None:
-  """
-  Set up the ZODB database by initializing the storage, database, connection, and root.
-  Args:
-  * zodb_file (str): Path to the ZODB database file
-  Returns:
-  * None
-  """
-  if zodb_file is None:
-    print("ERROR: No ZODB file passed to this function, exiting...")
-    exit_app(1)
-
-  global zodb_handle, zodb_root
-
-  storage = ZODB.FileStorage.FileStorage(zodb_file)
-  db = ZODB.DB(storage)
-  zodb_handle = db.open()
-  zodb_root = zodb_handle.root()
-
-def load_xmr_earnings_from_csv(csv_file: str) -> None:
-  """
-  Import appropriate xmr_mining functions and classes, and execute the code to import XMR mining data from a CSV file.
+    def load_xmr_earnings_from_csv(csv_file: str) -> None:
+    """
+    Import appropriate xmr_mining functions and classes, and execute the code to import XMR mining data from a CSV file.
   Args:
   * csv_file (str): Path to the CSV file containing the XMR mining data
   Returns:
@@ -112,7 +83,7 @@ def print_status() -> None:
   """
   Print the status of the MyZODB application. Currently this is the following:
   * Path to the backend ZODB object database
-  * Path to the configuration (INI) file for the MyZODB application
+  * Path to the configuration (INI) file zodb_file_path,for the MyZODB application
   Returns:
   * None
   """
@@ -177,7 +148,7 @@ def main(args: argparse.Namespace) -> None:
   line arguments were provided, then an interactive menu is printed instead.
   """
   # Access global variables
-  global zodb_file_path, ini_file_path
+  global ini_file_path
   # Get the location of the zodb file from the zodb.ini file
   config = configparser.ConfigParser()
   config.read(args.ini_file)
