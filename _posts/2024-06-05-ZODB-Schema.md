@@ -14,9 +14,11 @@ The diagram shows the node names in the backend ZODB storage.
     db4e o-- PROD
     PROD o-- Wallets
     Wallets o-- Wallet
-    PROD o-- P2Pool
+    PROD --- P2Pools
+    P2Pool o-- P2Pool
     PROD o-- History
-    PROD o-- Chart
+    PROD o-- Charts
+    Charts o-- Chart
     Chart o-- History
     P2Pool o-- Miner
     P2Pool o-- Wallet

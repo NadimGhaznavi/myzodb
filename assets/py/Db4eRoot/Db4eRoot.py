@@ -44,7 +44,7 @@ class Db4eRoot:
 
       elif choice == "2":
         wallet = Wallet()
-        wallet.add_wallet_menu()
+        wallet.wallet_menu()
 
       elif choice == "3":
         self.db.print_wallets()
