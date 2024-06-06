@@ -16,7 +16,7 @@ The diagram shows the node names in the backend ZODB storage.
     PROD o-- Wallets
     note for Wallets "A container to hold Wallet objects"
     Wallets o-- Wallet
-    PROD --- P2Pools
+    PROD o-- P2Pools
     note for P2Pools "A container to hold P2Pool objects"
     P2Pools o-- P2Pool
     PROD o-- History
