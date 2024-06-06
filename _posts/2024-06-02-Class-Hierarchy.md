@@ -4,7 +4,9 @@ title: Class Hierarchy
 date: 2024-06-02
 ---
 
-# Class Diagram
+# Class Diagram showing Inheritance
+
+The chart below shows the inheritance structrue of the Db4e codebase.
 
 <pre class="mermaid">
   classDiagram

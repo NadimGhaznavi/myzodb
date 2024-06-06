@@ -6,7 +6,8 @@ date: 2024-06-05
 
 # ZODB Schema for db4e
 
-The diagram shows the node names in the backend ZODB storage.
+The diagram shows the node names in the backend ZODB storage. B-Trees are used as
+container objects.
 
 <pre class="mermaid">    
   classDiagram
