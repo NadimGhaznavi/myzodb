@@ -12,12 +12,17 @@ The diagram shows the node names in the backend ZODB storage.
   classDiagram
     note "ZODB Schema for db4e"
     db4e o-- PROD
+    note for PROD "This container is the root ZODB object"
     PROD o-- Wallets
+    note for Wallets "A container to hold Wallet objects"
     Wallets o-- Wallet
     PROD --- P2Pools
+    note for P2Pools "A container to hold P2Pool objects"
     P2Pool o-- P2Pool
     PROD o-- History
+    note for History "All stored data is kept here"
     PROD o-- Charts
+    note for Charts "A container to hold Chart objects"
     Charts o-- Chart
     Chart o-- History
     P2Pool o-- Miner
