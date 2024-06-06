@@ -10,20 +10,29 @@ date: 2024-06-02
   classDiagram
     note "MyZODB Classes"
     Db4eRoot <|-- XMR
-    Db4eRoot <|-- Transaction
-    Transaction <|-- ShareTransaction
-    Transaction <|-- XMRTransaction
     Db4eRoot <|-- Miner
     Db4eRoot <|-- Wallet
     Db4eRoot <|-- P2PoolDaemon
     Db4eRoot <|-- Chart
     Db4eRoot <|-- History
-    Miner --o History
-    History --o XMRTransaction
-    History --o ShareTransaction
-    XMRTransaction --o XMR
-    Wallet --o XMRTransaction
-    ShareTransaction --o Miner
+    
+    Db4eRoot <|-- Transaction
+    Transaction <|-- ShareTransaction
+    Transaction <|-- XMRTransaction
+    
+    Db4eRoot <|-- Db4eTree
+    Db4eTree <|-- Wallets
+    Db4eTree <|-- Miners
+    Db4eTree <|-- P2Pools
+    
+    
+    class Db4eTree{
+      +B-Tree items
+      add(item)
+      get(item_key)
+      remove(item)
+      items()
+    }
 
     class Chart{
       +String csv_file

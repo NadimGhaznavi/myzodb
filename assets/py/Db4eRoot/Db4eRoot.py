@@ -1,9 +1,11 @@
 import os
 import sys
-import ZODB, ZODB.FileStorage
 import persistent
 import persistent.list
 import persistent.mapping
+
+from Wallet.Wallet import Wallet
+from Chart.Chart import Chart
 
 class Db4eRoot:
   """
@@ -27,7 +29,7 @@ class Db4eRoot:
   db_root.interactive_menu()
   """
 
-  def __init__(self, zodb_file, environ):
+  def __init__(self, root):
     """
     Constructor.
 
@@ -38,14 +40,15 @@ class Db4eRoot:
     5. Sets self.environ to 
     """  
 
-    storage = ZODB.FileStorage.FileStorage(zodb_file)
-    self.db = ZODB.DB(storage)
-    self.connection = self.db.open()
-    self.environ = environ
-
     self.load_schema()
-    self._name = f"{self.environ} {self.__class__.__name__}"
+    self.name = f"{self.__class__.__name__}"
+    self.db = None
   
+  def db(self, my_root):
+    if my_root:
+      self.db = my_root
+    return self.db
+
 
   def load_schema(self):
     """
@@ -77,7 +80,7 @@ class Db4eRoot:
       print("========== My ZODB Application ==========")
       print("")
       print("  1. Status")
-      print("  2. Create New Wallet")
+      print("  2. Add New Wallet")
       print("  3. Print All Wallets")
       print("  4. Load XMR Earnings from CSV File")      
       print("  5. Exit")

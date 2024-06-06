@@ -9,32 +9,13 @@ import os
 import sys
 
 # Add the Db4eRoot directory to the system path
-sys.path.append(os.path.join(os.getcwd(), "Db4eRoot"))
-sys.path.append(os.path.join(os.getcwd(), "Chart"))
-sys.path.append(os.path.join(os.getcwd(), "Wallet"))
-sys.path.append(os.path.join(os.getcwd(), "P2Pool"))
-sys.path.append(os.path.join(os.getcwd(), "Db4eStorage"))
-sys.path.append(os.path.join(os.getcwd(), "Db4eStartup"))
+from Db4eRoot.Db4eRoot import Db4eRoot
+from Chart.Chart import Chart
+from Wallet.Wallet import Wallet
+from Db4eStorage.Db4eStorage import Db4eStorage
+from Db4eStartup.Db4eStartup import Db4eStartup
 
-from Db4eRoot import Db4eRoot as Db4eRoot
-from Chart import Chart as Chart
-from Wallet import Wallet as Wallet
-from Db4eStorage import Db4eStorage
-from Db4eStartup import Db4eStartup
 
-"""
-Global Variables
-
-The myzodb.py script uses two global variables:
-* ini_file 
-
-The configuration file for the db4e application. The default value for this global 
-is db4e.ini. The configuraiton file should be in the same directory as this db4e.sh
-script. This default is coded into the application
-
-See command line arguments for information on overriding this coded value.
-"""
-ini_file = "db4e.ini"
 
 def main():
   """
@@ -49,7 +30,8 @@ def main():
   environ = myStartup.environ()
 
   # Get a ZODB handle
-  myRoot = Db4eStorage(zodb_file, environ)
+  myStorage = Db4eStorage(zodb_file, environ)
+  myRoot = myStorage.db()
 
   # Create a db4e ZODB root object instance
   myDb4e = Db4eRoot()

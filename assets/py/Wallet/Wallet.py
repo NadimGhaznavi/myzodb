@@ -1,9 +1,7 @@
 import os
 import sys
 
-sys.path.append(os.path.join(os.getcwd(), "Db4eRoot"))
-from Db4eRoot import Db4eRoot
-
+from Db4eRoot.Db4eRoot import Db4eRoot
 class Wallet(Db4eRoot):
   """
   Class that represents a crypto currency wallet.
@@ -15,8 +13,6 @@ class Wallet(Db4eRoot):
     pass
 
   def interactive_menu(self):
-    print("")
-    print("  5. Exit")
     print("---------- Wallet Menu ------------------")
     print("")
     print("  1. Add New Wallet")
