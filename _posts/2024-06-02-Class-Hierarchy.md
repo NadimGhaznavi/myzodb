@@ -53,7 +53,7 @@ The chart below shows the inheritance structrue of the Db4e codebase.
       accept_share()
       blockfound()
     }
-    class Db4doot{
+    class Db4dRoot{
       +ZODB.DB db
       get_root()
       set_root(self.db)
