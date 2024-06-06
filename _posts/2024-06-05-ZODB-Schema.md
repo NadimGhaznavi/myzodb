@@ -19,8 +19,7 @@ The diagram shows the node names in the backend ZODB storage.
     PROD o-- P2Pools
     note for P2Pools "A container to hold P2Pool objects"
     P2Pools o-- P2Pool
-    PROD o-- History
-    note for History "All stored data is kept here"
+    note for History "All data values are contained by the History object"
     PROD o-- Charts
     note for Charts "A container to hold Chart objects"
     Charts o-- Chart

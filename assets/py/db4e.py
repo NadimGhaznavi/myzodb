@@ -7,23 +7,20 @@ application.
 
 import os
 import sys
-import argparse
-import configparser
 
+# Add the Db4eRoot directory to the system path
 sys.path.append(os.path.join(os.getcwd(), "Db4eRoot"))
-from Db4eRoot import Db4eRoot
+sys.path.append(os.path.join(os.getcwd(), "Chart"))
+sys.path.append(os.path.join(os.getcwd(), "Wallet"))
+sys.path.append(os.path.join(os.getcwd(), "P2Pool"))
+sys.path.append(os.path.join(os.getcwd(), "Db4eStorage"))
+sys.path.append(os.path.join(os.getcwd(), "Db4eStartup"))
 
-
-# import Db4e classes
-"""
-Include supporting modules:
-* os
-* sys
-"""
-
-# Global variables
-# INI filename
-ini_file = "db4e.ini"
+from Db4eRoot import Db4eRoot as Db4eRoot
+from Chart import Chart as Chart
+from Wallet import Wallet as Wallet
+from Db4eStorage import Db4eStorage
+from Db4eStartup import Db4eStartup
 
 """
 Global Variables
@@ -37,55 +34,41 @@ script. This default is coded into the application
 
 See command line arguments for information on overriding this coded value.
 """
+ini_file = "db4e.ini"
 
-# Deal with command line args
-parser = argparse.ArgumentParser(description='My ZODB Application')
-parser.add_argument('-i', '--ini_file', type=str, default=ini_file, help='Path to the INI file')
-parser.add_argument('-a', '--action', type=str, default=None, help='Action to perform')
-parser.add_argument('-c', '--csv_file', type=str, default=None, help='Path to the CSV file')
-"""
-Command Line Arguments
-
-The myzodb.py script supports the following command line arguments:
-* [-i | --ini_file] : Path to the configuration file for the db4e application
-* [-a | --action] : An action. See function documentation for supported actions.
-* [-c | --csv_file] : The path to a CSV file. This is used by some actions to import or export data.
-"""
-
-def main(args: argparse.Namespace) -> None:
+def main():
   """
   This is the main() function for the MyZODB application. It parses the
   command line arguments and executes the specified actions. If no command
   line arguments were provided, then an interactive menu is printed instead.
   """
-  # Get the location of the zodb file from the zodb.ini file
-  config = configparser.ConfigParser()
-  config.read(args.ini_file)
-  zodb_file_path = config['db4e']['file_path']
   
-  myDb4e = Db4eRoot.Db4eRoot(zodb_file_path)
+  # Parse command line args, read INI file
+  myStartup = Db4eStartup()
+  zodb_file = myStartup.zodb_file()
+  environ = myStartup.environ()
+
+  # Get a ZODB handle
+  myRoot = Db4eStorage(zodb_file, environ)
+
+  # Create a db4e ZODB root object instance
+  myDb4e = Db4eRoot()
+  myDb4e.db(myRoot)
 
   # See if an action was specified 
   if args.action == 'status':
     myDb4e.print_status()
   
   elif args.action == 'loadxmrearningsfromcsv':
-    pass
-    #myChart = EarningsChart.EarningsChart()
-    #myChart.updateCsv()
+    myChart = EarningsChart()
+    myChart.updateCsv()
   
   elif args.action == 'monp2poollog':
-    pass
-    #myP2pool = P2Pool()
-    #myP2Pool.monitor_log()  
+    p2pool = P2Pool()
+    p2pool.monitor_log()
 
   elif args.action == None:
     myDb4e.interactive_menu()
     
 if __name__ == "__main__":
-  args = parser.parse_args()
-  try:
-    main(args)
-  except Exception as e:
-    # Handle any errors and shutdown gracefully
-    print(f"An error occured: {str(e)}")
+  main()
