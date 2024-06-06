@@ -12,7 +12,8 @@ The diagram shows the node names in the backend ZODB storage.
   classDiagram
     note "ZODB Schema for db4e"
     db4e o-- PROD
-    PROD o-- Wallet
+    PROD o-- Wallets
+    Wallets o-- Wallet
     PROD o-- P2Pool
     PROD o-- History
     PROD o-- Chart

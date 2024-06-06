@@ -18,3 +18,18 @@ def read_csv_to_payments(filename: str) -> List[ZMRPayment]:
       payments.append(payment)
 
 return payments
+
+  if not csv_file:
+    # Try and get the CSV file location from the commandline arguments
+    csv_file = args.csv_file
+    if not csv_file:
+      print("ERROR: Missing mandatory -c switch")
+      exit_app(1)
+
+  if not os.path.isfile(file_path):
+    print("ERROR: CSV does not exist, exiting...")
+    exit_app(1)
+
+  if not os.access(csv_file, os.R_OK):
+    print(f"ERROR: CSV file ({csv_file}) exists, but is not readable, exiting...")
+    exit_app(1)
