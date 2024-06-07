@@ -16,10 +16,9 @@ container objects.
     Wallets o-- Wallet
     Db4eRoot o-- P2Pools
     P2Pools o-- P2Pool
-    note for History "All data values are contained by the History object"
-    Db4eRoot o-- Charts
-    Charts o-- Chart
-    Chart o-- History
+    Db4eRoot o-- Reports
+    Reports o-- Report
+    Report o-- History
     P2Pool o-- Miner
     P2Pool o-- Wallet
     Wallet o-- History
@@ -27,6 +26,7 @@ container objects.
     History o-- XMRTransaction
     History o-- ShareTransaction
     XMRTransaction o-- XMR
+    note for History "All data values are contained by the History object"
 </pre>
   
 <script type="module">
