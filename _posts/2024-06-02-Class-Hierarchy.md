@@ -10,7 +10,7 @@ The chart below shows the inheritance structrue of the Db4e codebase.
 
 <pre class="mermaid">
   classDiagram
-    note "MyZODB Classes"
+    note "db4e class inheritance diagram"
     Db4eRoot <|-- XMR
     Db4eRoot <|-- Miner
     Db4eRoot <|-- Wallet
