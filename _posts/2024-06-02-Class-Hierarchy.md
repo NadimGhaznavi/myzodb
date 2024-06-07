@@ -15,7 +15,7 @@ The chart below shows the inheritance structrue of the Db4e codebase.
     Db4eRoot <|-- Miner
     Db4eRoot <|-- Wallet
     Db4eRoot <|-- P2PoolDaemon
-    Db4eRoot <|-- Chart
+    Db4eRoot <|-- Report
     Db4eRoot <|-- History
     
     Db4eRoot <|-- Transaction
@@ -27,7 +27,6 @@ The chart below shows the inheritance structrue of the Db4e codebase.
     Db4eTree <|-- Miners
     Db4eTree <|-- P2Pools
     
-    
     class Db4eTree{
       +B-Tree items
       add(item)
@@ -36,23 +35,20 @@ The chart below shows the inheritance structrue of the Db4e codebase.
       items()
     }
 
-    class Chart{
-      +String csv_file
-      read_csv()
-      write_csv()
-    }
     class History{
       +ShareTransactions share_transaction
       +XMRTransactions xmr_transaction
       add_history()
       get_history()
     }
+
     class Miner{
       +String hostname
       +History history
       accept_share()
       blockfound()
     }
+
     class Db4eRoot{
       +ZODB.DB db
       get_root()
@@ -61,31 +57,47 @@ The chart below shows the inheritance structrue of the Db4e codebase.
       _setup_zodb(ZODB.DB)
       __str__()
     }
+
     class P2PoolDaemon{
       +Miners miners
       +String logfile
       monitor_log()
     }
+    
+    class Report{
+      +String csv_file
+      read_csv()
+      write_csv()
+    }
+
+    class ReportManager{
+      +Reports reports
+    }
+
     class ShareTransaction{
       +Miner miner
       +Float effort
       +Float difficulty
       +DateTime timestamp
     }
+    
     class Transaction{
       +String to
       +String from
       +XMR amount
       +DateTime timestamp
     }
+    
     class Wallet{
       +Float balance
       +XMRTransactions transactions
       receive(XMRTransaction)
     }
+    
     class XMR{
       +Float amount
     }
+    
     class XMRTransaction{
       +String to
       +String from
