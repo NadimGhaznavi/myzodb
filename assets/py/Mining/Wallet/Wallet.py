@@ -11,13 +11,12 @@ for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 # Import required db4e classes
-from Transactions.Transactions import Transactions
+from Db4eTree.Db4eTree import Db4eTree
 
 class Wallet():
   """
   Class that represents a crypto currency wallet.
   """
-
   def __init__(self, wallet_name):
     self._name = wallet_name
     self._transactions = Transactions()

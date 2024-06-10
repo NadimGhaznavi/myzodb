@@ -10,9 +10,7 @@ project_dirs = [
 for project_dir in project_dirs:
   sys.path.append(project_dir)
 
-from Wallets.Wallets import Wallets
-from P2Pools.P2Pools import P2Pools
-from Reports.Reports import Reports
+from Db4eTree.Db4eTree import Db4eTree
 import persistent
 
 class Db4eRoot():
@@ -37,7 +35,7 @@ class Db4eRoot():
   db_root.interactive_menu()
   """
 
-  def __init__(self):
+  def __init__(self, db_root):
     """
     Constructor.
 
@@ -45,37 +43,20 @@ class Db4eRoot():
     2. Sets a name for itself
     3. Initializes the db attribute to None
     """  
-
-    self.load_schema()
     self._name = f"{self.__class__.__name__}"
-    self._db = None
-  
-  def db(self, newDb):
-    """
-    Get/Set method.
-    """
-    if newDb:
-      self._db = newDb
-    return self._db
+    self._root = db_root
+    if mining in self._root:
+      pass
+    else
+      self._root.mining = Db4eTree('mining')
 
   def print_status(self):
     """
     Print status info.
     """
     print(f"---------- Root --------------------------")
-    self.root['wallets'].print_status()
-    self.root['p2pools'].print_status()
-    self.root['reports'].print_status()
-
-  def load_schema(self):
-    """
-    Create the basic data structure to access data in the ZODB.
-    """
-    self.root = persistent.mapping.PersistentMapping()
-    self.root['wallets'] = Wallets()
-    self.root['p2pools'] = P2Pools()
-    self.root['reports'] = Reports()
-
+    print(f"{self._root}")
+            
   def __str__(self):
     """
     Returns:

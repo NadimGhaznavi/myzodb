@@ -7,10 +7,12 @@ class Db4eStorage():
     self._environ = environ
     self._storage = ZODB.FileStorage.FileStorage(zodb_file)
     self._db = ZODB.DB(self._storage)
-    self._db.open()
+    connection = self._db.open()
+    self._root = connection.root
+
   
-  def db(self):
-    return self._db
+  def root(self):
+    return self._root
   
   def storage(self):
     return self._storage

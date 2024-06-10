@@ -56,11 +56,8 @@ class Db4eTree(persistent.Persistent):
     Returns:
     * Object stored with that key or None
     """
-    if key in self._items:
-      return self._items[key]
-    else
-      print(f"FATAL ERROR: key ({key}) is not in TreeSet)")
-      sys.exit(1)
+    assert key in self._items, f"FATAL ERROR: key ({key}) is not in TreeSet"
+    return self._items[key]
 
   def items(self):
     """

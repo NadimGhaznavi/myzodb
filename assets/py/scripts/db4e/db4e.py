@@ -36,33 +36,27 @@ def interactive_menu(db4eStorage, db4eRoot):
   db4e functions. Also, process the user's choice.
   """
   while True:
-    print("")
-    print("========== Database 4 Everything ========")
+    print("\n========== Database 4 Everything ========")
     print("")
     print("  1. Status")
-    print("  2. Wallet Operations")
-    print("  3. Report Operations")
-    print("  4. P2Pool Operations")      
-    print("  5. Exit")
-    print("")
+    print("  2. Add Domain")
+    print("  3. Exit\n")
     choice = input("Enter your choice: ")
-    print("")
 
     if choice == "1":
-      print("========== Status ========================")
+      print("\n========== Status ========================")
       db4eRoot.print_status()
       db4eStorage.print_status()
 
     elif choice == "2":
-      db4eRoot.root['wallets'].interactive_menu()
+      print("\n  1. Mining Ops")
+      print("  2. Shopping")
+      print("  3. Budget\n")
+      choice = input("Enter your choice: ")
+      if choice == "1":
+        db4eRoot.add_domain('mining')
 
     elif choice == "3":
-      db4eRoot.root['reports'].interactive_menu()
-
-    elif choice == "4":
-      db4eRoot.root['p2pools'].interactive_menu()
-
-    elif choice == "5":
       sys.exit(0)
 
     else:
@@ -83,10 +77,8 @@ def main():
   environ = myStartup.environ()
 
   myStorage = Db4eStorage(zodb_file, environ)
-  myRootHandle = myStorage.db()
-  myDb4eRoot = Db4eRoot()
-  myDb4eRoot.db(myRootHandle)
-
+  myDb4eRoot = Db4eRoot(myStorage.root())
+  
   # Parse command line args if any
   args = myStartup.args()
   
