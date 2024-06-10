@@ -15,14 +15,13 @@ import configparser
 import pathlib
 
 # Append the Infrastructure directory to the Python path
-project_dir = "/opt/prod/db4e/assets/py/Infrastructure"
-sys.path.append(project_dir)
-project_dir = "/opt/prod/db4e/assets/py/Mining"
-sys.path.append(project_dir)
-project_dir = "/opt/prod/db4e/assets/py/Reports"
-sys.path.append(project_dir)
-
-
+project_dirs = [ 
+  "/opt/prod/db4e/assets/py/Infrastructure", 
+  "/opt/prod/db4e/assets/py/Mining", 
+  "/opt/prod/db4e/assets/py/Reports"
+]
+for project_dir in project_dirs:
+  sys.path.append(project_dir)
 
 # Import required db4e modules.
 from Db4eRoot.Db4eRoot import Db4eRoot

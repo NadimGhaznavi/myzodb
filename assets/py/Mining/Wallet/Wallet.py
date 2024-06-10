@@ -1,17 +1,26 @@
 import os
 import sys
 
-from Db4eRoot.Db4eRoot import Db4eRoot
+# Append the Infrastructure directory to the Python path
+project_dirs = [ 
+  "/opt/prod/db4e/assets/py/Infrastructure", 
+  "/opt/prod/db4e/assets/py/Mining", 
+  "/opt/prod/db4e/assets/py/Reports"
+]
+for project_dir in project_dirs:
+  sys.path.append(project_dir)
 
-class Wallet(Db4eRoot):
+# Import required db4e classes
+from Transactions.Transactions import Transactions
+
+class Wallet():
   """
   Class that represents a crypto currency wallet.
   """
 
-  def __init__(self):
-    # Execute parent class's constructor
-    #super().__init__()
-    pass
+  def __init__(self, wallet_name):
+    self._name = wallet_name
+    self._transactions = Transactions()
 
   def interactive_menu(self):
     print("---------- Wallet Menu ------------------")

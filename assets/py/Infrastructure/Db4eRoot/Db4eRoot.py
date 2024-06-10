@@ -1,10 +1,19 @@
 import os
 import sys
-import persistent
 
-from Mining.Wallets.Wallets import Wallets
-from Mining.P2Pools.P2Pools import P2Pools
-from Reports.Reports.Reports import Reports
+# Append the Infrastructure directory to the Python path
+project_dirs = [ 
+  "/opt/prod/db4e/assets/py/Infrastructure", 
+  "/opt/prod/db4e/assets/py/Mining", 
+  "/opt/prod/db4e/assets/py/Reports"
+]
+for project_dir in project_dirs:
+  sys.path.append(project_dir)
+
+from Wallets.Wallets import Wallets
+from P2Pools.P2Pools import P2Pools
+from Reports.Reports import Reports
+import persistent
 
 class Db4eRoot():
   """

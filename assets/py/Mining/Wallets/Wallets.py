@@ -1,11 +1,23 @@
+import sys
 import persistent
 from BTrees.OOBTree import TreeSet
 
-class Wallets(Db4eRoot, persistent.Persistent):
+# Append the Infrastructure directory to the Python path
+project_dirs = [ 
+  "/opt/prod/db4e/assets/py/Infrastructure", 
+  "/opt/prod/db4e/assets/py/Mining", 
+  "/opt/prod/db4e/assets/py/Reports"
+]
+for project_dir in project_dirs:
+  sys.path.append(project_dir)
 
-  def __init__(self, name):
-    self._name = name
-    self._wallets = TreeSet()
+# Parent class
+from Db4eTree.Db4eTree import Db4eTree
+from Wallet.Wallet import Wallet
+
+# Import required db4e modules
+
+class Wallets(Db4eTree):
 
   def print_status(self):
     """
