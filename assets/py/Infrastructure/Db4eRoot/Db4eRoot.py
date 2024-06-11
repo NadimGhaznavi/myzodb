@@ -47,8 +47,12 @@ class Db4eRoot():
     self._root = db_root
     if mining in self._root:
       pass
-    else
+    else:
       self._root.mining = Db4eTree('mining')
+
+  def init_schema(self):
+    self.root.mining = Db4eTree('mining')
+    self.root.mining.miners = db4eTree('miners'))
 
   def print_status(self):
     """

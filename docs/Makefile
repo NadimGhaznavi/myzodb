@@ -13,24 +13,12 @@ HTMLDIR       = $(BUILDDIR)/html
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile static-symlink
+.PHONY: help Makefile 
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-
-text:
-	rm -rf $(BUILDDIR)
-	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-
-html:
-	rm -rf $(BUILDDIR)
-	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-	#cd $(HTMLDIR) && find . -type f -name '*.html' -exec sed -i 's/_static/static/g' {} +
-	#cd $(HTMLDIR) && find . -type f -name '*.html' -exec sed -i 's/_static/static/g' {} +
-	#cd $(HTMLDIR) && mv _static static
-	#cd $(HTMLDIR) && mv _sources sources
 
 clean:
 	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS)  $(O)

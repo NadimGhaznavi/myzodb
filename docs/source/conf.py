@@ -6,10 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'MyZODB'
+project = 'Database 4 Everything'
 copyright = '2024, Nadim-Daniel Ghaznavi'
 author = 'Nadim-Daniel Ghaznavi'
-release = '0.1'
+release = '0.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -19,6 +19,9 @@ import sys
 sys.path.append('..')
 sys.path.append('../assets')
 sys.path.append('../assets/py')
+sys.path.append('../assets/py/Infrastructure')
+sys.path.append('../assets/py/Reports')
+sys.path.append('../assets/py/Mining')
 
 extensions = [
   'sphinx.ext.autodoc',
