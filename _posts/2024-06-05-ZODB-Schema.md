@@ -12,19 +12,30 @@ container objects.
 <pre class="mermaid">    
   classDiagram
     note "ZODB Schema for the db4e application"
-    Db4eRoot o-- Wallets
-    Wallets o-- Wallet
-    Db4eRoot o-- P2Pools
-    P2Pools o-- P2Pool
     Db4eRoot o-- Reports
+    Db4eRoot o-- History
+    Db4eRoot o-- Mining
+    
     Reports o-- Report
-    Report o-- History
-    P2Pool o-- Miner
+    
+    Mining o-- P2Pool
+    Mining o-- Wallets
+
+    Wallets o-- Wallet
+
+    P2Pool o-- Miners
+    Miners o-- Miner
     P2Pool o-- Wallet
+    P2Pool o-- History
+        
+    Report o-- History
     Wallet o-- History
     Miner o-- History
+        
     History o-- XMRTransaction
     History o-- ShareTransaction
+    History o-- ShareFoundEvent
+    
     XMRTransaction o-- XMR
     note for History "All data values are contained by the History object"
 </pre>

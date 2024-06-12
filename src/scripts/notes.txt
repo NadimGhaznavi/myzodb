@@ -1,0 +1,29 @@
+import sys
+import ZODB, ZODB.FileStorage
+import transaction
+
+project_dirs = [ 
+  "/opt/prod/db4e/src/Infrastructure", 
+  "/opt/prod/db4e/src/Mining", 
+  "/opt/prod/db4e/src/Reports"
+]
+for project_dir in project_dirs:
+  sys.path.append(project_dir)
+
+from Db4eTree.Db4eTree import Db4eTree
+
+zodb_file = 'db4e_db'
+storage = ZODB.FileStorage.FileStorage(zodb_file)
+db = ZODB.DB(storage)
+connection = db.open()
+root = connection.root
+
+#2024-06-12 10:06:28.0478 P2Pool BLOCK FOUND: main chain block at height 3169541 was mined by someone else in this p2pool
+
+#2024-06-12 10:06:28.0488 P2Pool Your wallet 48wY7nYBsQNSw7v4LjoNnvCtk1Y6GLNVmePGrW82gVhYhQtWJFHi6U6G3X5d7JN2ucajU9SeBcijET8ZzKWYwC3z3Y6fDEG didn't get a payout in block 3169541 because you had no shares in PPLNS window
+
+#2024-06-12 09:42:10.0656 StratumServer SHARE FOUND: mainchain height 3169532, sidechain height 1, diff 100000, client 192.168.1.7:39140, user sally, effort 200.002%
+
+#NOTICE  2024-04-05 05:35:24.8068 P2Pool Your wallet 48wY7nYBsQNSw7v4LjoNnvCtk1Y6GLNVmePGrW82gVhYhQtWJFHi6U6G3X5d7JN2ucajU9SeBcijET8ZzKWYwC3z3Y6fDEG got a payout of 0.000212314253 XMR in block 3120480
+
+

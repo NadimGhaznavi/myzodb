@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import argparse
 import configparser
 
@@ -13,7 +15,8 @@ script. This default is coded into the application
 
 See command line arguments for information on overriding this coded value.
 """
-ini_file = "db4e.ini"
+
+ini_file = "/opt/prod/db4e/src/scripts/db4e/db4e.ini"
 
 class Db4eStartup():
 
@@ -31,9 +34,13 @@ class Db4eStartup():
     # Get the location of the zodb file from the zodb.ini file
     config = configparser.ConfigParser()
     config.read(args.ini_file)
-    self._zodb_file = config['db4e']['file_path']
+    self._zodb_file = config['db4e']['storage_path']
     self._environ = config['db4e']['environment']
+    self._p2pool_log = config['p2pool']['p2pool_log']
   
+  def p2pool_log(self):
+    return self._p2pool_log
+
   def zodb_file(self):
     return self._zodb_file
   
@@ -45,3 +52,4 @@ class Db4eStartup():
     Get method.
     """
     return self._args
+  
