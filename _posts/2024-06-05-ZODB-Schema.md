@@ -40,8 +40,7 @@ container objects.
     ShareFoundEvents o-- ShareFoundEvent
 
     XMRTransaction o-- XMR
-    note for History "All data values are contained by the History object"
-</pre>
+    </pre>
   
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
