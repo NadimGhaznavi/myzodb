@@ -35,9 +35,9 @@ container objects.
     History o-- XMRTransactions
     History o-- ShareTransactions
     History o-- ShareFoundEvents
-    XMRTransactions o-- XMRTransactions
-    ShareTransaction o-- ShareTransactions
-    ShareFoundEvent o-- ShareFoundEvents
+    XMRTransactions o-- XMRTransaction
+    ShareTransactions o-- ShareTransaction
+    ShareFoundEvents o-- ShareFoundEvent
 
     XMRTransaction o-- XMR
     note for History "All data values are contained by the History object"
