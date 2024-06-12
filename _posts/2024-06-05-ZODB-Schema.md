@@ -32,10 +32,13 @@ container objects.
     Wallet o-- History
     Miner o-- History
         
-    History o-- XMRTransaction
-    History o-- ShareTransaction
-    History o-- ShareFoundEvent
-    
+    History o-- XMRTransactions
+    History o-- ShareTransactions
+    History o-- ShareFoundEvents
+    XMRTransactions o-- XMRTransactions
+    ShareTransaction o-- ShareTransactions
+    ShareFoundEvent o-- ShareFoundEvents
+
     XMRTransaction o-- XMR
     note for History "All data values are contained by the History object"
 </pre>
