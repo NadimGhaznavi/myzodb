@@ -34,6 +34,7 @@ container objects.
     History o-- XMRTransactions
     History o-- ShareTransactions
     History o-- ShareFoundEvents
+    History o-- BlockFoundEvents
     XMRTransactions o-- XMRTransaction
     ShareTransactions o-- ShareTransaction
     ShareFoundEvents o-- ShareFoundEvent
