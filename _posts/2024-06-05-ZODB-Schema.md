@@ -37,6 +37,7 @@ container objects.
     XMRTransactions o-- XMRTransaction
     ShareTransactions o-- ShareTransaction
     ShareFoundEvents o-- ShareFoundEvent
+    BlockFoundEvents o-- BlockFoundEvent
 
     XMRTransaction o-- XMR
     </pre>
