@@ -19,7 +19,6 @@ container objects.
     Reports o-- Report
     
     Mining o-- P2Pool
-    Mining o-- Wallets
 
     Wallets o-- Wallet
 
