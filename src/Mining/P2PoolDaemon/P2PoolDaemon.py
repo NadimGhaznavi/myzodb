@@ -12,9 +12,10 @@ log. Suitable for being run in the same script that starts the P2Pool daemon,
 thereby ensuring that all relevant log messages are written to the DB.
 """
 
-import time
+import datetime
 import os
 import sys
+import re
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
@@ -29,12 +30,13 @@ for project_dir in project_dirs:
 from Db4eStartup.Db4eStartup import Db4eStartup
 from Db4eStorage.Db4eStorage import Db4eStorage
 from Db4eRoot.Db4eRoot import Db4eRoot
+from BlockFoundEvent import BlockFoundEvent
+from ShareFoundEvent import ShareFoundEvent
+from XMRTransaction import XMRTransaction
 
 sm_tab = "-" * 8 + " "
 
 class P2PoolDaemon():
-  
-  
 
   def __init__(self, db4e_root, log_file):
     """
@@ -43,6 +45,15 @@ class P2PoolDaemon():
     self._log_file = log_file
     self._root = db4e_root
     self._log_handle = None
+    self._name = 'P2Pool Daemon'
+
+    # Make sure the ZODB backend has the required structure
+    if not hasattr(self._root.mining, 'p2pool'):
+      myStartup = Db4eStartup()
+      p2pool_log = myStartup.p2pool_log()
+      self._root.mining.p2pool = P2PoolDaemon(self._root, p2Pool.log)
+      self._root.mining.p2pool.miners = Db4eTree('miners')
+      self._root.mining.p2Pool.history = self._root.history
 
     """
     Function to monitor the P2Pool logfile. This function has no exit, but instead
@@ -55,24 +66,30 @@ class P2PoolDaemon():
     """
 
   def mon_log(self):
+    self._name = 'P2Pool Daemon'
     self._log_handle = open(self._log_file)
     p2log = self._log_handle
     p2log.seek(0, os.SEEK_END) # End-of-file
-    count = 0
+    
     while True:
-      line = p2log.readline()
-      if not line:
+      log_line = p2log.readline()
+      if not log_line:
         time.sleep(5)
         continue
       
-      # Parse line, call record_db_event if needed
-      # 2024-06-12 09:41:31.7115 StratumServer SHARE FOUND: mainchain height 3169532, sidechain height 0, diff 100000, client 192.168.1.11:40600, user kermit, effort 100.001%
-      print(f"NEW LINE (#{count}): {line}")
-      count = count + 1
+      # Pattern to match this kind of
+      # 2024-06-12 10:06:28.0478 P2Pool BLOCK FOUND: main chain block at height 3169541 was mined by someone else in this p2pool
+      pattern = r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+) P2Pool BLOCK FOUND.*$"
+      match = re.search(pattern, log_line)
 
-  def __del__(self):
-    if self._log_handle:
-      self._log_handle.close()
+      if match:
+        # "Block Found" event
+
+        timestamp_str = match.group(1)
+        timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
+
+        block_found_event = BlockFoundEvent(self._name, timestamp)
+        self._root.history.add_item(timestamp, block_found_event)
 
   def interactive_menu(self):
     while True:
@@ -87,8 +104,9 @@ class P2PoolDaemon():
       else:
         print("Invalid choice. Please try again.")
 
-  def write_db_record(self):
-    pass
+  def __del__(self):
+    if self._log_handle:
+      self._log_handle.close()
 
 def main():
   # Parse command line args, read INI file

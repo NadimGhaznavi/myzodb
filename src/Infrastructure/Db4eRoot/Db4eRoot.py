@@ -11,6 +11,8 @@ for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 from Db4eTree.Db4eTree import Db4eTree
+from Db4eStartup.Db4eStartup import Db4eStartup
+from Db4eHistory.Db4eHistory import Db4eHistory
 import persistent
 
 class Db4eRoot():
@@ -45,11 +47,17 @@ class Db4eRoot():
     """  
     self._name = f"{self.__class__.__name__}"
     self._root = db_root
+    self.init_schema()
 
   def init_schema(self):
-    self.root.mining = Db4eTree('mining')
-    self.root.mining.miners = db4eTree('miners')
-
+    
+    if not hasattr(self._root, 'history'):
+      self._root.history = Db4eHistory(self._root)
+    if not hasattr(self._root, 'mining'):
+      self._root.mining = Db4eTree('mining')
+    if not hasattr(self._root, 'reports'):
+      self._root.reports = Db4eTree('reports')
+      
   def print_status(self):
     """
     Print status info.
