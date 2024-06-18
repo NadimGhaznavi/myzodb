@@ -9,8 +9,8 @@ import persistent
 
 class BlockFoundEvent(persistent.Persistent):
 
-  def __init__(self, pool, timestamp):
-    self._pool = pool
+  def __init__(self, pool_name, timestamp):
+    self._pool = pool_name
     self._timestamp = timestamp
     
   def pool(self, new_pool=None):
@@ -22,3 +22,17 @@ class BlockFoundEvent(persistent.Persistent):
     if new_timestamp:
       self._timestamp = new_timestamp
     return self._timestamp
+
+  def __lt__(self, other):
+    return self.timestamp() < other.timestamp()
+  def __le__(self, other):
+    return self.timestamp() <= other.timestamp()
+  def __eq__(self, other):
+    return self.timestamp() == other.timestamp()
+  def __ne__(self, other):
+    return self.timestamp() != other.timestamp()
+  def __hash__(self):
+    return hash(self.timestamp())
+  def __str__(self):
+    return f"Block found event ({self._timestamp})"
+  

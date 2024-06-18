@@ -1,32 +1,60 @@
+#!/usr/bin/python3
 """
-* Infrastructure/Db4eApp/Db4eApp.py
+Infrastructure/Db4eApp/Db4eApp.py
+"""
 
-This code provides a user interface to the top level Database 4 Everything application. It manages adding, removing and 
-engaging with domain specific applications. The Db4eApp class is responsible for adding and removing domains to and from
-the db4e backend object storage.
-"""
+import sys
+
+from ZODB.FileStorage import FileStorage
+from ZODB.DB import DB
+from ZODB.PersistentMapping import PersistentMapping
+import transaction
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
-  "/opt/prod/db4e/assets/py/Infrastructure", 
-  "/opt/prod/db4e/assets/py/Mining", 
-  "/opt/prod/db4e/assets/py/Reports"
+  "/opt/prod/db4e/src/Infrastructure", 
+  "/opt/prod/db4e/src/Mining", 
+  "/opt/prod/db4e/src/Reports"
 ]
 for project_dir in project_dirs:
   sys.path.append(project_dir)
 
-from Db4eTree.Db4eTree import Db4eTree
+# Import required db4e modules.
+from Db4eStartup.Db4eStartup import Db4eStartup
+from Db4eZODB.Db4eZODB import Db4eZODB
+from P2Pool.P2Pool import P2Pool
 
 class Db4eApp():
+  def __init__(self):
+    pass
 
-  def __init__(self, db4eRoot):
-    self._root = db4eRoot
+  def menu(self):
+    keep_looping = True
+    while keep_looping:
+      print("\n---------- App Menu -----------------------")
+      print("  Menu options:")
+      print("    (D)atabase 4 Everything")
+      print("    (P)2Pool Menu")
+      print("    E(x)it")
+      choice = input("  Enter your choice [SX]: ")
 
-  def interactive_menu(self):
-    while True:
-      self.print_status()
-      self.print_choices()
-      self.do_choice(input("Enter your choice: "))
+      if choice == "D" or choice == "d":
+        db = Db4eZODB()
+        db.print_status()
 
-  def print_choices(self):
-    
+      elif choice == "P" or choice == "p":
+        pool = P2Pool()
+        pool.menu()
+      
+      elif choice == "X" or choice == "x":
+        keep_looping = False
+
+      else:
+        print("Invalid choice, try again")
+  
+def main():
+  app = Db4eApp()
+  app.menu()
+
+if __name__ == '__main__':
+  main()

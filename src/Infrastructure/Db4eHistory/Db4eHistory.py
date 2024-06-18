@@ -1,6 +1,8 @@
 import os
 import sys
 import persistent
+import transaction
+from BTrees.OOBTree import TreeSet
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
@@ -15,13 +17,18 @@ from Db4eTree.Db4eTree import Db4eTree
 
 class Db4eHistory(persistent.Persistent):
 
-  def __init__(self, db_root):
-
-    if not hasattr(db_root, 'xmr_transactions'):
-      db_root_root.xmr_transactions = Db4eTree('XMR Transactions')
+  def __init__(self, db_connection):
+    self._connection = db_connection
+    self._root = db_connection.root
+    self._records = TreeSet()
     
-    if not hasattr(db_root, 'share_found_events')  
-      db_root.share_found_events = Db4eTree('Share found events')
+  
 
-    if not hasattr(db_root, 'block_found_events'
-      db_root.block_found_events = Db4eTree('Block found event')
+  def print_status(self):
+    print(f"---------- History -----------------------")
+    print(f"---------- Share Found Events ------------")
+    print(f"---------- Block Found Events ------------")
+    print(f"---------- XMR Transactions --------------")
+
+def main():
+  printf("---------- Storage Status ----------------")

@@ -1,16 +1,28 @@
-import ZODB, ZODB.FileStorage
+#!/usr/bin/python3
+"""
+Infrastructure/Db4eStorage/Db4eStorage.py
+"""
+from ZODB.FileStorage import FileStorage
+from ZODB.DB import DB
 
 class Db4eStorage():
 
-  def __init__(self, zodb_file, environ):
-    self._zodb_file = zodb_file
+  def __init__(self, storage_file, environ):
+    self._storage_file = storage_file
     self._environ = environ
-    self._storage = ZODB.FileStorage.FileStorage(zodb_file)
-    self._db = ZODB.DB(self._storage)
-    connection = self._db.open()
-    self._root = connection.root
 
-  
+    # Get some backend storage
+    self._storage = FileStorage(storage_file)
+    # Get a database that's using the storage
+    self._db = DB(self._storage)
+    # Get a connectionto the database
+    self._conn = self._db.open()
+    # Get the root object out of the database
+    self._root = self._conn.root()
+
+  def connection(self):
+    return self._connection
+
   def root(self):
     return self._root
   
@@ -25,10 +37,12 @@ class Db4eStorage():
   
   def print_status(self):
     print(f"---------- Storage Status ----------------")
-    print(f"Environment: {self._environ}")
-    print(f"Storage file: {self._zodb_file}")
+    print(f"Environment  : {self._environ}")
+    print(f"Storage file : {self._zodb_file}")
+    print(f"Connection   : {self._connection}")
+    print(f"Root         : {self._root}")
 
   def __del__(self):
     # Close the ZODB when this object is about to be destroyed
-    if self._db:
-      self._db.close()
+    if self._connection:
+      self._connection.close()
