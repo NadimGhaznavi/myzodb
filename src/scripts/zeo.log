@@ -1,0 +1,23 @@
+2024-06-19T03:59:58 (258155) opening storage '1' using FileStorage
+2024-06-19T03:59:58 StorageServer created RW with storages: 1:RW:/opt/prod/db4e/data/db4e-dev.fs
+2024-06-19T03:59:58 listening on ('zeo.osoyalce.com', 51970)
+2024-06-19T04:01:13 (258155) terminated by SIGINT
+2024-06-19T04:01:13 closing storage '1'
+2024-06-19T04:01:33 (258326) opening storage '1' using FileStorage
+2024-06-19T04:01:33 StorageServer created RW with storages: 1:RW:/opt/prod/db4e/data/db4e-dev.fs
+2024-06-19T04:01:33 listening on ('', 51970)
+2024-06-19T04:01:39 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-19T04:01:39 received handshake 'Z5'
+2024-06-19T04:56:59 (:51970) disconnected
+2024-06-19T04:58:48 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-19T04:58:48 received handshake 'Z5'
+2024-06-19T13:57:35 (258326) terminated by SIGINT
+2024-06-19T13:57:35 closing storage '1'
+2024-06-19T14:00:38 (322049) opening storage '1' using FileStorage
+2024-06-19T14:00:39 StorageServer created RW with storages: 1:RW:/opt/prod/db4e/data/db4e-dev.fs
+2024-06-19T14:00:39 listening on ('', 51970)
+2024-06-19T14:00:39 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-19T14:00:39 received handshake 'Z5'
+2024-06-19T14:08:47 (:51970) disconnected
+2024-06-19T14:12:55 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-19T14:12:55 received handshake 'Z5'
