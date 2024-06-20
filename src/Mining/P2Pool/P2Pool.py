@@ -20,7 +20,7 @@ for project_dir in project_dirs:
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
 from BlockFoundEvent.BlockFoundEvent import BlockFoundEvent
-from MiningZODB.MiningZODB import MiningZODB
+from MiningZOE.MiningZOE import MiningZOE
 
 class P2Pool():
 
@@ -32,17 +32,17 @@ class P2Pool():
     self._miners = PersistentList
 
     startup = Db4eStartup()
-    self._log_file = startup.p2pool_log()
+    self._p2pool_log = startup.p2pool_log()
   
   def config_menu(self):
     self._name = input("Enter a name for this P2Pool daemon: ")
     self._hostname = input("Enter the hostname where P2Pool is running: ")
     self._ip_addr = input("Enter IP address of the host where P2Pool is running: ")
     self._wallet = input("Enter the wallet def print_address for payouts:\n  ")
-    self._log_file = input("Enter path to P2Pool logfile: ")
+    self._p2pool_log = input("Enter path to P2Pool logfile: ")
   
   def monitor_log(self):
-    self._log_handle = open(self._log_file)
+    self._log_handle = open(self._p2pool_log)
     p2log = self._log_handle
     p2log.seek(0, os.SEEK_END) # End-of-file
     
@@ -63,20 +63,27 @@ class P2Pool():
         timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
         print("BLOCK FOUND EVENT")
         event = BlockFoundEvent(self._name, timestamp)
-        miningDb = MiningZODB()
-        miningDb.add_block_found_event(event)
+        db = MiningZOE()
+        db.add_block_found_event(event)
+
+  def p2pool_log(self):
+    return self._p2pool_log
 
   def menu(self):
     keep_looping = True
     while keep_looping:
       print(f"---------- P2Pool Menu ------------------")
       print("  Menu options:")
+      print("    (S)tatus")
       print("    (M)onitor P2Pool Daemon Log")
       print("    (C)onfigure P2Pool")
       print("    E(x)it menu")
-      choice = input("enter your choice: [MCX]: ")
+      choice = input("enter your choice: [SMCX]: ")
 
-      if choice == "M" or choice == "m":
+      if choice == "S" or choice == "s":
+        self.print_status()
+
+      elif choice == "M" or choice == "m":
         self.monitor_log()
 
       elif choice == "C" or choice == "c":
@@ -92,5 +99,10 @@ class P2Pool():
     if new_name:
       self._name = new_name
     return self._name
+
+  def print_status(self):
+    p2pool_log = self.p2pool_log()
+    print(f"---------- P2Pool Status ---------------")
+    print(f"  P2Pool Daemon Log: {p2pool_log}")
 
   

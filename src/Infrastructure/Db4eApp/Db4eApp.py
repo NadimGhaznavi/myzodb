@@ -21,7 +21,7 @@ for project_dir in project_dirs:
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from Db4eZODB.Db4eZODB import Db4eZODB
+from Db4eZOE.Db4eZOE import Db4eZOE
 from P2Pool.P2Pool import P2Pool
 
 class Db4eApp():
@@ -39,7 +39,7 @@ class Db4eApp():
       choice = input("  Enter your choice [SX]: ")
 
       if choice == "D" or choice == "d":
-        db = Db4eZODB()
+        db = Db4eZOE()
         db.print_status()
 
       elif choice == "P" or choice == "p":
