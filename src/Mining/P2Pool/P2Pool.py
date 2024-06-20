@@ -19,8 +19,10 @@ for project_dir in project_dirs:
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from BlockFoundEvent.BlockFoundEvent import BlockFoundEvent
 from MiningZOE.MiningZOE import MiningZOE
+from BlockFoundEvent.BlockFoundEvent import BlockFoundEvent
+from ShareFoundEvent.ShareFoundEvent import ShareFoundEvent
+from XMRTransaction.XMRTransaction import XMRTransaction
 
 class P2Pool():
 
@@ -66,6 +68,38 @@ class P2Pool():
         db = MiningZOE()
         db.add_block_found_event(event)
 
+      # 2024-06-19 16:32:00.5836 StratumServer SHARE FOUND: mainchain height 3174862, sidechain height 7944668, diff 107488844, client 192.168.1.5:39114, user maia, effort 37.115%
+      pattern = r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+) StratumServer SHARE FOUND.*mainchain height \d+, sidechain height \d+, diff (\d+), client \S+:\d+, user (\S+), effort (\d+\.\d+%)$"  
+      match = re.search(pattern, log_line)
+      if match:
+        # "Share Found" event
+        timestamp_str = match.group(1)
+        timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
+      
+        difficulty = int(match.group(2))
+        miner = match.group(3)
+
+        effort_str = match.group(4)
+        effort = float(effort_str.rstrip('%'))  # Remove the '%' before converting to float
+      
+        print("SHARE FOUND EVENT")
+        event = ShareFoundEvent(miner, effort, difficulty, timestamp)
+        db = MiningZOE()
+        db.add_share_found_event(event)
+
+      # NOTICE  2024-04-05 08:13:56.8792 P2Pool Your wallet 48wY7nYBsQNSw7v4LjoNnvCtk1Y6GLNVmePGrW82gVhYhQtWJFHi6U6G3X5d7JN2ucajU9SeBcijET8ZzKWYwC3z3Y6fDEG got a payout of 0.000474598149 XMR in block 3120548
+      pattern = r"^NOTICE\s+(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(\S+)\s+got a payout of\s+(\d\.\d+)\s+XMR in block\s+(\d+)$"
+      match = re.search(pattern, log_line)
+      if match:
+        print("XMR TRANSACTION FOUND")
+        wallet_address = match.group(2)
+        payout_amount = float(match.group(3))
+        timestamp = match.group('timestamp')
+
+        xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, timestamp)
+        db = MiningZOE()
+        db.add_xmr_transaction(xmr_transaction)
+      
   def p2pool_log(self):
     return self._p2pool_log
 

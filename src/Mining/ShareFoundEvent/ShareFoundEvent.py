@@ -15,29 +15,20 @@ class ShareFoundEvent(persistent.Persistent):
     self._timestamp = timestamp
     self._ip = None
     
+
   def __lt__(self, other):
-    if self._timestamp < other._timestamp:
-      return True
-    else:
-      return False
-  
+    return self.timestamp() < other.timestamp()
   def __le__(self, other):
-    if (self < other):
-      return True
-    return(self == other)
-
+    return self.timestamp() <= other.timestamp()
   def __eq__(self, other):
-    if self._timestamp == other._timestamp:
-      return True
-    else:
-      return False
-    
+    return self.timestamp() == other.timestamp()
   def __ne__(self, other):
-    return not (self == other)
-  
+    return self.timestamp() != other.timestamp()
   def __hash__(self):
-    return hash(self._timestamp)
-
+    return hash(self.timestamp())
+  def __str__(self):
+    return f"Share found event ({self._timestamp})"
+  
   def miner(self, new_miner=None):
     if new_miner:
       self._miner = new_miner

@@ -20,7 +20,7 @@ class MiningZOE(Db4eZOE):
 
   def add_block_found_event(self, event):
     """
-    Put new add_found_event instances here:
+    Put new Found Block events here
 
     root.history.block_found_events
     """
@@ -33,3 +33,32 @@ class MiningZOE(Db4eZOE):
 
     transaction.commit()
 
+  def add_share_found_event(self, event):
+    """
+    Put new Share Found events here:
+
+    root.history.block_found_events
+    """
+    db = Db4eZOE()
+    root = db.root()
+    timestamp = event.timestamp()
+    events = root.history['share_found_events']
+
+    events.insert(event)
+
+    transaction.commit()
+
+  def add_xmr_transaction(self, xmr_transaction):
+    """
+    Put new XMR transactions here:
+
+    root.history.block_found_events
+    """
+    db = Db4eZOE()
+    root = db.root()
+    timestamp = xmr_transaction.timestamp()
+    xmr_transactions = root.history['xmr_transactions']
+
+    xmr_transactions.insert(xmr_transaction)
+
+    transaction.commit()
