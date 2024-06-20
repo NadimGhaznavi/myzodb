@@ -75,3 +75,273 @@
 2024-06-20T03:44:47 (:51970) disconnected
 2024-06-20T03:45:03 (396885) terminated by SIGINT
 2024-06-20T03:45:03 closing storage '1'
+2024-06-20T16:57:06 (472495) opening storage '1' using FileStorage
+2024-06-20T16:57:06 StorageServer created RW with storages: 1:RW:/opt/prod/db4e/data/db4e-dev.fs
+2024-06-20T16:57:06 listening on ('', 51970)
+2024-06-20T16:57:06 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:06 received handshake 'Z5'
+2024-06-20T16:57:06 (:51970) disconnected
+2024-06-20T16:57:06 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:06 received handshake 'Z5'
+2024-06-20T16:57:06 (:51970) disconnected
+2024-06-20T16:57:06 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:06 received handshake 'Z5'
+2024-06-20T16:57:06 (:51970) disconnected
+2024-06-20T16:57:06 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:06 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:06 received handshake 'Z5'
+2024-06-20T16:57:06 received handshake 'Z5'
+2024-06-20T16:57:06 (:51970) disconnected
+2024-06-20T16:57:06 (:51970) disconnected
+2024-06-20T16:57:06 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:06 received handshake 'Z5'
+2024-06-20T16:57:06 (:51970) disconnected
+2024-06-20T16:57:06 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:06 received handshake 'Z5'
+2024-06-20T16:57:06 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:07 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:07 received handshake 'Z5'
+2024-06-20T16:57:07 (:51970) disconnected
+2024-06-20T16:57:08 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:08 received handshake 'Z5'
+2024-06-20T16:57:08 (:51970) disconnected
+2024-06-20T16:57:08 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:08 received handshake 'Z5'
+2024-06-20T16:57:08 (:51970) disconnected
+2024-06-20T16:57:08 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:08 received handshake 'Z5'
+2024-06-20T16:57:08 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:16 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:16 received handshake 'Z5'
+2024-06-20T16:57:16 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:17 received handshake 'Z5'
+2024-06-20T16:57:17 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:25 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:25 received handshake 'Z5'
+2024-06-20T16:57:25 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:26 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:26 received handshake 'Z5'
+2024-06-20T16:57:26 (:51970) disconnected
+2024-06-20T16:57:27 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:27 received handshake 'Z5'
+2024-06-20T16:57:27 (:51970) disconnected
+2024-06-20T16:57:27 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:27 received handshake 'Z5'
+2024-06-20T16:57:27 (:51970) disconnected
+2024-06-20T16:57:27 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:27 received handshake 'Z5'
+2024-06-20T16:57:27 (:51970) disconnected
+2024-06-20T16:57:27 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:27 received handshake 'Z5'
+2024-06-20T16:57:27 (:51970) disconnected
+2024-06-20T16:57:27 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:27 received handshake 'Z5'
+2024-06-20T16:57:27 (:51970) disconnected
+2024-06-20T16:57:34 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:34 received handshake 'Z5'
+2024-06-20T16:57:34 (:51970) disconnected
+2024-06-20T16:57:34 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:34 received handshake 'Z5'
+2024-06-20T16:57:34 (:51970) disconnected
+2024-06-20T16:57:34 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:34 received handshake 'Z5'
+2024-06-20T16:57:34 (:51970) disconnected
+2024-06-20T16:57:34 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:34 received handshake 'Z5'
+2024-06-20T16:57:34 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:35 received handshake 'Z5'
+2024-06-20T16:57:35 (:51970) disconnected
+2024-06-20T16:57:36 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:36 received handshake 'Z5'
+2024-06-20T16:57:36 (:51970) disconnected
+2024-06-20T16:57:36 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:36 received handshake 'Z5'
+2024-06-20T16:57:36 (:51970) disconnected
+2024-06-20T16:57:36 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:36 received handshake 'Z5'
+2024-06-20T16:57:36 (:51970) disconnected
+2024-06-20T16:57:36 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:36 received handshake 'Z5'
+2024-06-20T16:57:36 (:51970) disconnected
+2024-06-20T16:57:36 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T16:57:36 received handshake 'Z5'
+2024-06-20T16:57:36 (:51970) disconnected
+2024-06-20T16:59:20 (472495) terminated by SIGINT
+2024-06-20T16:59:20 closing storage '1'
+2024-06-20T16:59:57 (472772) opening storage '1' using FileStorage
+2024-06-20T16:59:57 Ignoring index for /opt/prod/db4e/data/db4e-dev.fs
+2024-06-20T16:59:57 StorageServer created RW with storages: 1:RW:/opt/prod/db4e/data/db4e-dev.fs
+2024-06-20T16:59:57 listening on ('', 51970)

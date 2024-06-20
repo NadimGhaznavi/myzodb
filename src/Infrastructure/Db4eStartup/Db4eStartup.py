@@ -16,7 +16,7 @@ values.
 
 """
 
-ini_file = '/opt/prod/db4e/src/scripts/db4e.ini'
+ini_file = '/opt/prod/db4e/conf/db4e.ini'
 environment = 'dev'
 
 class Db4eStartup():
@@ -32,17 +32,20 @@ class Db4eStartup():
     self._args = args
   
     # prod, qa or dev
-    self._environ = args.environ
+    environ = args.environ
+    self._environ = environ
     
-    # Get the location of the zodb file from the zodb.ini file
+    # Access the INI file 
     config = configparser.ConfigParser()
     config.read(args.ini_file)
-    self._storage_file = config[args.environ]['storage_path']
-    self._p2pool_log = config[args.environ]['p2pool_log']
-    self._zeo_server_config = config[args.environ]['zeo_server_config']
-    self._zeo_client_config = config[args.environ]['zeo_client_config']
-    self._zeo_server = config[args.environ]['zeo_server']
-    self._zeo_port = config[args.environ]['zeo_port']
+
+    # Read the ini file settings
+    self._storage_file = config[environ]['storage_path']
+    self._p2pool_log = config[environ]['p2pool_log']
+    self._zeo_server_config = config[environ]['zeo_server_config']
+    self._zeo_client_config = config[environ]['zeo_client_config']
+    self._zeo_server = config[environ]['zeo_server']
+    self._zeo_port = config[environ]['zeo_port']
 
   def print_status(self):
     print(f"---------- Db4eStartup Status -------------")

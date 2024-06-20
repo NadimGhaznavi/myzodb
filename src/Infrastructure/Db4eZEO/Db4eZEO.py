@@ -65,8 +65,9 @@ class Db4eZEO():
       print(f"  - {elem}")
 
   def root(self):
-    address = self.zeo_server(), self.zeo_port()
-    storage = ClientStorage.ClientStorage(address)
+    zeo_server = self.zeo_server()
+    zeo_port = self.zeo_port()
+    storage = ClientStorage.ClientStorage(zeo_server, zeo_port)
     db = DB(storage)
     conn = db.open()
     root = conn.root()
