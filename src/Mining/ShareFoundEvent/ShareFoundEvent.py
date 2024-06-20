@@ -27,7 +27,7 @@ class ShareFoundEvent(persistent.Persistent):
   def __hash__(self):
     return hash(self.timestamp())
   def __str__(self):
-    return f"Share found event ({self._timestamp})"
+    return f"Share found by {self._miner} at {self._timestamp}"
   
   def miner(self, new_miner=None):
     if new_miner:

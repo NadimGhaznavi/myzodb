@@ -27,7 +27,7 @@ from XMRTransaction.XMRTransaction import XMRTransaction
 class P2Pool():
 
   def __init__(self):
-    self._name = None
+    self._name = 'P2Pool'
     self._hostname = None
     self._ip_addr = None
     self._wallet = None
@@ -56,6 +56,7 @@ class P2Pool():
 
       print(f"P2Pool log: {log_line}"[0:-1])
 
+      ### BLOCK FOUND events
       # 2024-06-12 10:06:28.0478 P2Pool BLOCK FOUND: main chain block at height 3169541 was mined by someone else in this p2pool
       pattern = r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+) P2Pool BLOCK FOUND.*$"
       match = re.search(pattern, log_line)
@@ -68,12 +69,13 @@ class P2Pool():
         db = MiningZOE()
         db.add_block_found_event(event)
 
-      # 2024-06-19 16:32:00.5836 StratumServer SHARE FOUND: mainchain height 3174862, sidechain height 7944668, diff 107488844, client 192.168.1.5:39114, user maia, effort 37.115%
-      pattern = r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+) StratumServer SHARE FOUND.*mainchain height \d+, sidechain height \d+, diff (\d+), client \S+:\d+, user (\S+), effort (\d+\.\d+%)$"  
+      ### SHARE FOUND events
+      # NOTICE 2024-06-19 16:32:00.5836 StratumServer SHARE FOUND: mainchain height 3174862, sidechain height 7944668, diff 107488844, client 192.168.1.5:39114, user maia, effort 37.115%
+      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+StratumServer SHARE FOUND.*mainchain height \d+, sidechain height \d+, diff (\d+), client [^:]+:\d+, user (\S+), effort (\d+\.\d+%)$"
       match = re.search(pattern, log_line)
       if match:
         # "Share Found" event
-        timestamp_str = match.group(1)
+        timestamp_str = match.group('timestamp')
         timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
       
         difficulty = int(match.group(2))
@@ -87,14 +89,16 @@ class P2Pool():
         db = MiningZOE()
         db.add_share_found_event(event)
 
+      ### XMR TRANSACTION events
       # NOTICE  2024-04-05 08:13:56.8792 P2Pool Your wallet 48wY7nYBsQNSw7v4LjoNnvCtk1Y6GLNVmePGrW82gVhYhQtWJFHi6U6G3X5d7JN2ucajU9SeBcijET8ZzKWYwC3z3Y6fDEG got a payout of 0.000474598149 XMR in block 3120548
-      pattern = r"^NOTICE\s+(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(\S+)\s+got a payout of\s+(\d\.\d+)\s+XMR in block\s+(\d+)$"
+      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(\S+)\s+got a payout of\s+(\d\.\d+)\s+XMR in block\s+(\d+)$"
       match = re.search(pattern, log_line)
       if match:
         print("XMR TRANSACTION FOUND")
         wallet_address = match.group(2)
         payout_amount = float(match.group(3))
-        timestamp = match.group('timestamp')
+        timestamp_str = match.group('timestamp')
+        timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
 
         xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, timestamp)
         db = MiningZOE()

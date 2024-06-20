@@ -10,13 +10,13 @@ import persistent
 class BlockFoundEvent(persistent.Persistent):
 
   def __init__(self, pool_name, timestamp):
-    self._pool = pool_name
+    self._pool_name = pool_name
     self._timestamp = timestamp
     
-  def pool(self, new_pool=None):
-    if new_pool:
-      self._pool = new_pool
-    return self._pool
+  def pool_name(self, new_pool_name=None):
+    if new_pool_name:
+      self._pool_name = new_pool_name
+    return self._pool_name
   
   def timestamp(self, new_timestamp=None):
     if new_timestamp:
@@ -34,5 +34,5 @@ class BlockFoundEvent(persistent.Persistent):
   def __hash__(self):
     return hash(self.timestamp())
   def __str__(self):
-    return f"Block found event ({self._timestamp})"
+    return f"Block found in {self.pool_name()} at {self.timestamp()}"
   

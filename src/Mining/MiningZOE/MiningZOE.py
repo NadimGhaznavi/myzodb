@@ -3,6 +3,7 @@ Mining/MiningZODB/MiningZODB.py
 """
 import sys
 import transaction
+from ZODB.PersistentMapping import PersistentMapping
 
 # Append the project's directories to the module search path
 project_dirs = [ 
@@ -16,7 +17,18 @@ for project_dir in project_dirs:
 # Import required db4e modules.
 from Db4eZOE.Db4eZOE import Db4eZOE
 
-class MiningZOE(Db4eZOE):
+class MiningZOE():
+
+  def __init__(self):
+    self.init_db()
+
+  def init_db(self):
+    db = Db4eZOE()
+    root = db.root()
+
+    if not hasattr(root.mining, 'workers'):
+      root.mining.workers = PersistentMapping()
+      transaction.commit()
 
   def add_block_found_event(self, event):
     """

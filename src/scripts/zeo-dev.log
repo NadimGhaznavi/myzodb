@@ -1,0 +1,77 @@
+2024-06-20T03:37:22 (396885) opening storage '1' using FileStorage
+2024-06-20T03:37:22 StorageServer created RW with storages: 1:RW:/opt/prod/db4e/data/db4e-dev.fs
+2024-06-20T03:37:22 listening on ('', 51970)
+2024-06-20T03:37:41 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:37:41 received handshake 'Z5'
+2024-06-20T03:37:41 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:37:41 received handshake 'Z5'
+2024-06-20T03:37:41 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:37:41 received handshake 'Z5'
+2024-06-20T03:38:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:38:35 received handshake 'Z5'
+2024-06-20T03:38:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:38:35 received handshake 'Z5'
+2024-06-20T03:38:35 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:38:35 received handshake 'Z5'
+2024-06-20T03:39:05 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:39:05 received handshake 'Z5'
+2024-06-20T03:39:05 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:39:05 received handshake 'Z5'
+2024-06-20T03:39:05 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:39:05 received handshake 'Z5'
+2024-06-20T03:39:32 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:39:32 received handshake 'Z5'
+2024-06-20T03:39:32 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:39:32 received handshake 'Z5'
+2024-06-20T03:39:32 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:39:32 received handshake 'Z5'
+2024-06-20T03:41:00 (:51970) disconnected
+2024-06-20T03:41:00 (:51970) disconnected
+2024-06-20T03:41:00 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:10 (:51970) disconnected
+2024-06-20T03:43:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:17 received handshake 'Z5'
+2024-06-20T03:43:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:17 received handshake 'Z5'
+2024-06-20T03:43:17 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:17 received handshake 'Z5'
+2024-06-20T03:43:19 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:19 received handshake 'Z5'
+2024-06-20T03:43:19 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:19 received handshake 'Z5'
+2024-06-20T03:43:19 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:19 received handshake 'Z5'
+2024-06-20T03:43:33 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:33 received handshake 'Z5'
+2024-06-20T03:43:33 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:33 received handshake 'Z5'
+2024-06-20T03:43:33 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:33 received handshake 'Z5'
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:41 (:51970) disconnected
+2024-06-20T03:43:46 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:46 received handshake 'Z5'
+2024-06-20T03:43:46 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:46 received handshake 'Z5'
+2024-06-20T03:43:46 Connected ZEO.asyncio.server.ServerProtocol(('', 51970))
+2024-06-20T03:43:46 received handshake 'Z5'
+2024-06-20T03:44:47 (:51970) disconnected
+2024-06-20T03:44:47 (:51970) disconnected
+2024-06-20T03:44:47 (:51970) disconnected
+2024-06-20T03:45:03 (396885) terminated by SIGINT
+2024-06-20T03:45:03 closing storage '1'

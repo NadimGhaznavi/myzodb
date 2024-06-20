@@ -27,7 +27,7 @@ class XMRTransaction(persistent.Persistent):
   def __hash__(self):
     return hash(self.timestamp())
   def __str__(self):
-    return f"XMR Transaction ({self._timestamp} for ({self._amount}))"
+    return f"XMR Transaction for {self._amount} XMR at {self._timestamp}"
   
   def sender(self, new_sender=None):
     if new_sender:

@@ -4,7 +4,7 @@ Mining/MiningZODB/MiningZODB.py
 import sys
 import transaction
 
-# Append the Infrastructure directory to the Python path
+# Append the projects directories to the module search path
 project_dirs = [ 
   "/opt/prod/db4e/src/Infrastructure", 
   "/opt/prod/db4e/src/Mining", 
@@ -13,9 +13,9 @@ project_dirs = [
 for project_dir in project_dirs:
   sys.path.append(project_dir)
 
+# Import required db4e modules.
 from Db4eZODB.Db4eZODB import Db4eZODB
 
-# Import required db4e modules.
 class MiningZODB(Db4eZODB):
 
   def add_block_found_event(self, event):

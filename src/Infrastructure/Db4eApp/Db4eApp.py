@@ -33,12 +33,19 @@ class Db4eApp():
     while keep_looping:
       print("\n---------- App Menu -----------------------")
       print("  Menu options:")
+      print("    (S)tatus")
       print("    (D)atabase 4 Everything")
       print("    (P)2Pool Menu")
       print("    E(x)it")
-      choice = input("  Enter your choice [SX]: ")
+      choice = input("  Enter your choice [SDPX]: ")
 
-      if choice == "D" or choice == "d":
+      if choice == "S" or choice == "s":
+        startup = Db4eStartup()
+        startup.print_status()
+        db = Db4eZOE()
+        db.print_status()
+
+      elif choice == "D" or choice == "d":
         db = Db4eZOE()
         db.print_status()
 
