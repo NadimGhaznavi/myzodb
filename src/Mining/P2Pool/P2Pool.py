@@ -19,7 +19,7 @@ for project_dir in project_dirs:
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from MiningZOE.MiningZOE import MiningZOE
+from MiningZEO.MiningZEO import MiningZEO
 from BlockFoundEvent.BlockFoundEvent import BlockFoundEvent
 from ShareFoundEvent.ShareFoundEvent import ShareFoundEvent
 from XMRTransaction.XMRTransaction import XMRTransaction
@@ -66,7 +66,7 @@ class P2Pool():
         timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
         print("BLOCK FOUND EVENT")
         event = BlockFoundEvent(self._name, timestamp)
-        db = MiningZOE()
+        db = MiningZEO()
         db.add_block_found_event(event)
 
       ### SHARE FOUND events
@@ -86,7 +86,7 @@ class P2Pool():
       
         print("SHARE FOUND EVENT")
         event = ShareFoundEvent(miner, effort, difficulty, timestamp)
-        db = MiningZOE()
+        db = MiningZEO()
         db.add_share_found_event(event)
 
       ### XMR TRANSACTION events
@@ -101,7 +101,7 @@ class P2Pool():
         timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
 
         xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, timestamp)
-        db = MiningZOE()
+        db = MiningZEO()
         db.add_xmr_transaction(xmr_transaction)
       
   def p2pool_log(self):

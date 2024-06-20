@@ -1,5 +1,5 @@
 """
-Mining/MiningZODB/MiningZODB.py
+Mining/MiningZEO/MiningZEO.py
 """
 import sys
 import transaction
@@ -15,15 +15,15 @@ for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 # Import required db4e modules.
-from Db4eZOE.Db4eZOE import Db4eZOE
+from Db4eZEO.Db4eZEO import Db4eZEO
 
-class MiningZOE():
+class MiningZEO():
 
   def __init__(self):
     self.init_db()
 
   def init_db(self):
-    db = Db4eZOE()
+    db = Db4eZEO()
     root = db.root()
 
     if not hasattr(root.mining, 'workers'):
@@ -36,13 +36,12 @@ class MiningZOE():
 
     root.history.block_found_events
     """
-    db = Db4eZOE()
+    db = Db4eZEO()
     root = db.root()
     timestamp = event.timestamp()
     events = root.history['block_found_events']
 
     events.insert(event)
-
     transaction.commit()
 
   def add_share_found_event(self, event):
@@ -51,13 +50,12 @@ class MiningZOE():
 
     root.history.block_found_events
     """
-    db = Db4eZOE()
+    db = Db4eZEO()
     root = db.root()
     timestamp = event.timestamp()
     events = root.history['share_found_events']
 
     events.insert(event)
-
     transaction.commit()
 
   def add_xmr_transaction(self, xmr_transaction):
@@ -66,11 +64,11 @@ class MiningZOE():
 
     root.history.block_found_events
     """
-    db = Db4eZOE()
+    db = Db4eZEO()
     root = db.root()
     timestamp = xmr_transaction.timestamp()
     xmr_transactions = root.history['xmr_transactions']
 
     xmr_transactions.insert(xmr_transaction)
-
     transaction.commit()
+0

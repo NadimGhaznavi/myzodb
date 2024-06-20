@@ -39,13 +39,21 @@ class Db4eStartup():
     config.read(args.ini_file)
     self._storage_file = config[args.environ]['storage_path']
     self._p2pool_log = config[args.environ]['p2pool_log']
+    self._zeo_server_config = config[args.environ]['zeo_server_config']
+    self._zeo_client_config = config[args.environ]['zeo_client_config']
+    self._zeo_server = config[args.environ]['zeo_server']
+    self._zeo_port = config[args.environ]['zeo_port']
 
   def print_status(self):
     print(f"---------- Db4eStartup Status -------------")
-    print(f"Config file  : {ini_file}")
-    print(f"Environment  : {self._environ}")
-    print(f"Storage file : {self._storage_file}")
-    print(f"P2P log      : {self._p2pool_log}")
+    print(f"Config file       : {ini_file}")
+    print(f"Environment       : {self._environ}")
+    print(f"Storage file      : {self._storage_file}")
+    print(f"P2P log           : {self._p2pool_log}")
+    print(f"ZEO server        : {self._zeo_server}")
+    print(f"ZEO service port  : {self._zeo_port}")
+    print(f"ZEO server config : {self._zeo_server_config}")
+    print(f"ZEO client config : {self._zeo_client_config}")
   
   def p2pool_log(self):
     return self._p2pool_log
@@ -55,6 +63,18 @@ class Db4eStartup():
   
   def environ(self):
     return self._environ
+  
+  def zeo_client_config(self):
+    return self._zeo_client_config
+  
+  def zeo_port(self):
+    return self._zeo_port
+  
+  def zeo_server(self):
+    return self._zeo_server
+
+  def zeo_server_config(self):
+    return self._zeo_server_config
 
   def args(self):
     """

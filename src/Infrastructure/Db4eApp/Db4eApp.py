@@ -21,7 +21,7 @@ for project_dir in project_dirs:
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from Db4eZOE.Db4eZOE import Db4eZOE
+from Db4eZEO.Db4eZEO import Db4eZEO
 from P2Pool.P2Pool import P2Pool
 
 class Db4eApp():
@@ -36,22 +36,25 @@ class Db4eApp():
       print("    (S)tatus")
       print("    (D)atabase 4 Everything")
       print("    (P)2Pool Menu")
+      print("    (Z)EO Menu")
       print("    E(x)it")
       choice = input("  Enter your choice [SDPX]: ")
 
       if choice == "S" or choice == "s":
         startup = Db4eStartup()
         startup.print_status()
-        db = Db4eZOE()
-        db.print_status()
-
+        
       elif choice == "D" or choice == "d":
-        db = Db4eZOE()
+        db = Db4eZEO()
         db.print_status()
 
       elif choice == "P" or choice == "p":
         pool = P2Pool()
         pool.menu()
+
+      elif choice == "Z" or choice == "z":
+        zeo = Db4eZEO()
+        zeo.menu()
       
       elif choice == "X" or choice == "x":
         keep_looping = False
