@@ -2,8 +2,18 @@
 """
 scripts/db4e.py
 """
+import sys
 import argparse
 import configparser
+
+# Append the Infrastructure directory to the Python path
+project_dirs = [ 
+  "/opt/prod/db4e/src/Infrastructure", 
+  "/opt/prod/db4e/src/Mining", 
+  "/opt/prod/db4e/src/Reports"
+]
+for project_dir in project_dirs:
+  sys.path.append(project_dir)
 
 """
 Global Variables
@@ -34,7 +44,10 @@ class Db4eStartup():
     # prod, qa or dev
     environ = args.environ
     self._environ = environ
-    
+
+    # Action 
+    self._action = args.action
+
     # Access the INI file 
     config = configparser.ConfigParser()
     config.read(args.ini_file)
@@ -42,10 +55,12 @@ class Db4eStartup():
     # Read the ini file settings
     self._storage_file = config[environ]['storage_path']
     self._p2pool_log = config[environ]['p2pool_log']
-    self._zeo_server_config = config[environ]['zeo_server_config']
-    self._zeo_client_config = config[environ]['zeo_client_config']
-    self._zeo_server = config[environ]['zeo_server']
-    self._zeo_port = config[environ]['zeo_port']
+    self._db_name = config[environ]['db_name']
+    self._mongodb_server = config[environ]['mongodb_server']
+    self._mongodb_port = config[environ]['mongodb_port']
+    
+  def action(self):
+    return self._action
 
   def print_status(self):
     print(f"---------- Db4eStartup Status -------------")
@@ -53,11 +68,10 @@ class Db4eStartup():
     print(f"Environment       : {self._environ}")
     print(f"Storage file      : {self._storage_file}")
     print(f"P2P log           : {self._p2pool_log}")
-    print(f"ZEO server        : {self._zeo_server}")
-    print(f"ZEO service port  : {self._zeo_port}")
-    print(f"ZEO server config : {self._zeo_server_config}")
-    print(f"ZEO client config : {self._zeo_client_config}")
-  
+    print(f"Mongo DB name     : {self._db_name}")
+    print(f"Mongo server host : {self._mongodb_server}")
+    print(f"Mongo server port : {self._mongodb_port}")
+    
   def p2pool_log(self):
     return self._p2pool_log
 
@@ -67,14 +81,14 @@ class Db4eStartup():
   def environ(self):
     return self._environ
   
-  def zeo_client_config(self):
-    return self._zeo_client_config
+  def db_name(self):
+    return self._db_name
   
-  def zeo_port(self):
-    return self._zeo_port
+  def mongodb_server(self):
+    return self._mongodb_server
   
-  def zeo_server(self):
-    return self._zeo_server
+  def mongodb_port(self):
+    return int(self._mongodb_port)
 
   def zeo_server_config(self):
     return self._zeo_server_config

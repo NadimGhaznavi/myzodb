@@ -47,26 +47,34 @@ class P2Pool():
     self._log_handle = open(self._p2pool_log)
     p2log = self._log_handle
     p2log.seek(0, os.SEEK_END) # End-of-file
-    
+    print(f"Monitoring log file ({self.p2pool_log()})")
+    count = 0
+
+    db = MiningZEO()
+
     while True:
+      count = count + 1
+      if count % 10 == 0:
+        time.sleep(1)
       log_line = p2log.readline()
       if not log_line:
         time.sleep(5)
         continue
 
-      print(f"P2Pool log: {log_line}"[0:-1])
+      print(f"Log   : {log_line}"[0:-1])
 
       ### BLOCK FOUND events
       # 2024-06-12 10:06:28.0478 P2Pool BLOCK FOUND: main chain block at height 3169541 was mined by someone else in this p2pool
-      pattern = r"^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+) P2Pool BLOCK FOUND.*$"
+      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool BLOCK FOUND.*$"
       match = re.search(pattern, log_line)
       if match:
         # "Block Found" event
-        timestamp_str = match.group(1)
+        timestamp_str = match.group('timestamp')
         timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
-        print("BLOCK FOUND EVENT")
+        print("Event : BLOCK FOUND EVENT")
+        print(f"  P2Pool    : {self._name}")
+        print(f"  Timestamp : {timestamp}")
         event = BlockFoundEvent(self._name, timestamp)
-        db = MiningZEO()
         db.add_block_found_event(event)
 
       ### SHARE FOUND events
@@ -84,9 +92,12 @@ class P2Pool():
         effort_str = match.group(4)
         effort = float(effort_str.rstrip('%'))  # Remove the '%' before converting to float
       
-        print("SHARE FOUND EVENT")
+        print("Event : SHARE FOUND EVENT")
+        print(f"  Miner      : {miner}")
+        print(f"  Effort     : {effort}")
+        print(f"  Difficulty : {difficulty}")
+        print(f"  Timestamp  : {timestamp}")
         event = ShareFoundEvent(miner, effort, difficulty, timestamp)
-        db = MiningZEO()
         db.add_share_found_event(event)
 
       ### XMR TRANSACTION events
@@ -94,14 +105,17 @@ class P2Pool():
       pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(\S+)\s+got a payout of\s+(\d\.\d+)\s+XMR in block\s+(\d+)$"
       match = re.search(pattern, log_line)
       if match:
-        print("XMR TRANSACTION FOUND")
         wallet_address = match.group(2)
         payout_amount = float(match.group(3))
         timestamp_str = match.group('timestamp')
         timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
 
+        print("XMR TRANSACTION FOUND")
+        print(f"  Wallet    : {wallet_address[0:4]}...")
+        print(f"  Amount    : {payout_amount}")
+        print(f"  Timestamp : {timestamp}")
+        
         xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, timestamp)
-        db = MiningZEO()
         db.add_xmr_transaction(xmr_transaction)
       
   def p2pool_log(self):

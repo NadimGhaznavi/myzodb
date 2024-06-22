@@ -26,7 +26,7 @@ class MiningZEO():
     db = Db4eZEO()
     root = db.root()
 
-    if not hasattr(root.mining, 'workers'):
+    if not hasattr(root.mining, 'miners'):
       root.mining.workers = PersistentMapping()
       transaction.commit()
 

@@ -1,8 +1,13 @@
+#!/usr/bin/python3
+"""
+Infrastructure/Db4eZEO/Db4eZEO.py
+"""
+
 import sys
 from ZEO import ClientStorage
 from ZODB import DB
-import transaction
 from ZODB.PersistentMapping import PersistentMapping
+import transaction
 from BTrees.OOBTree import TreeSet
 
 # Append the Infrastructure directory to the Python path
@@ -17,11 +22,17 @@ for project_dir in project_dirs:
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
 
+
 class Db4eZEO():
   def __init__(self):
     startup = Db4eStartup()
-    self._zeo_port = startup.zeo_port()
     self._zeo_server = startup.zeo_server()
+    self._zeo_port = startup.zeo_port()
+    zeo_address = self.zeo_server(), self.zeo_port()
+    storage = ClientStorage.ClientStorage(zeo_address)
+    db = DB(storage)
+    conn = db.open()
+    self._root = conn.root()
     self.init_db()
 
   def init_db(self):
@@ -65,13 +76,7 @@ class Db4eZEO():
       print(f"  - {elem}")
 
   def root(self):
-    zeo_server = self.zeo_server()
-    zeo_port = self.zeo_port()
-    storage = ClientStorage.ClientStorage(zeo_server, zeo_port)
-    db = DB(storage)
-    conn = db.open()
-    root = conn.root()
-    return root
+    return self._root
     
   def zeo_port(self):
     return self._zeo_port
@@ -79,4 +84,9 @@ class Db4eZEO():
   def zeo_server(self):
     return self._zeo_server
 
-  
+def main():
+  db = Db4eZEO()
+  db.print_status()
+
+if __name__ == '__main__':
+  main()
