@@ -32,12 +32,17 @@ class Db4eMongoDb():
     return self._db_name
 
   def init_db(self):
-    root = self.root()
-    if 'common' not in root.list_collection_names():
-      common_collection = root["common"]
-      common_collection.insert_one({"history": {}})
-    if 'mining' not in root.list_collection_names():
-      mining = root["mining"]
+    db = self.db()
+    if 'common' not in db.list_collection_names():
+      common_col = db["common"]
+      common_col.insert_one({'history': {}})
+    if 'mining' not in db.list_collection_names():
+      mining = db["mining"]
+
+  def history(self):
+    db = self.db()
+    common_col = db['common']
+    return common_col
 
   def mongodb_port(self):
     return self._mongodb_port
@@ -49,14 +54,19 @@ class Db4eMongoDb():
     print("\n---------- Db4eMongoDb Status -------------")
     print(f"  MongoDb server : {self._mongodb_server}")
     print(f"  MongoDb port   : {self._mongodb_port}")
+    print("----------- History -----------------------")
+    history = self.history()
+    for doc in history.find():
+      print(doc)
+      
+        
 
-  def root(self):
+  def db(self):
     mongodb_server = self.mongodb_server()
-    mongodb_port = self.mongodb_port()  
+    mongodb_port = str(self.mongodb_port())
     db_name = self.db_name()
     try:
-      conn_str = f"mongodb://{mongodb_server}:{mongodb_port}/"
-      my_client = MongoClient("mongodb://localhost:27017/")
+      my_client = MongoClient(f"mongodb://{mongodb_server}:{mongodb_port}/")
     except:
       print("FATAL ERROR: Could not connecto to MongoDb ({mongodb_server}:{mongodb_port})")
       sys.exit(1)

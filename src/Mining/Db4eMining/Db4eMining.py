@@ -16,26 +16,49 @@ for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 # Import required db4e modules.
+from Db4eMongoDb.Db4eMongoDb import Db4eMongoDb
 from P2Pool.P2Pool import P2Pool
 
 class Db4eMining():
 
-  def __init__(self, db):
-    self._db = db
-    self._conn = None
-    self._root = None
+  def __init__(self):
     self.init_db()
 
   def init_db(self):
-    root = self.root()
-    mining = root['mining']
-    if not hasattr(mining, 'p2pools'):
-      mining.p2pools = PersistentList()
-      transaction.commit()
-    if not hasattr(mining, 'wallets'):
-      mining.wallets = PersistentList()
-      transaction.commit()
+    mongo = Db4eMongoDb()
+    db = mongo.db()
+    mining_col = db["mining"]
 
+    # Check if XMR transactions document exists
+    if mining_col.find_one({"doc_name": "xmr_transactions"}) is None:
+      # Create XMR transactions document if it doesn't exist
+      mining_col.create_document(
+        {
+          "doc_name" : "xmr_transactions",
+          "events": {}
+        }
+      )
+
+    # Check if share found document exists
+    if mining_col.find_one({"doc_name": "share_found_events"}) is None:
+      # Create share found events document if it doesn't exist
+      mining_col.create_document(
+        {
+          "doc_name" : "share_found_events"
+          "events": {}
+        }
+      )
+
+    # Check if block found document exists
+    if mining_col.find_one({"doc_name": "block_found_events"}) is None:
+      # Create block found evemts document if it doesn't exist
+      mining_col.create_document(
+        {
+          "doc_name" : "block_found_events",
+          "events": {}
+        }
+      )
+    
   def db(self):
     return self._db
   
