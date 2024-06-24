@@ -5,9 +5,7 @@ A record to store the transaction information for when the P2P deamon detects
 a XMR payout for shares found in the PPLNS window.
 """
 
-import persistent
-
-class XMRTransaction(persistent.Persistent):
+class XMRTransaction():
 
   def __init__(self, sender, receiver, amount, timestamp, memo=None):
     self._sender = sender
@@ -16,16 +14,6 @@ class XMRTransaction(persistent.Persistent):
     self._memo = memo
     self._timestamp = timestamp
     
-  def __lt__(self, other):
-    return self.timestamp() < other.timestamp()
-  def __le__(self, other):
-    return self.timestamp() <= other.timestamp()
-  def __eq__(self, other):
-    return self.timestamp() == other.timestamp()
-  def __ne__(self, other):
-    return self.timestamp() != other.timestamp()
-  def __hash__(self):
-    return hash(self.timestamp())
   def __str__(self):
     return f"XMR Transaction for {self._amount} XMR at {self._timestamp}"
   
