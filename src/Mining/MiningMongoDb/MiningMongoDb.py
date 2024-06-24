@@ -120,7 +120,7 @@ class MiningMongoDb():
       p2pool = event['p2pool']
       timestamp = event['timestamp']
       print(f"{timestamp} : P2Pool ({p2pool})")
-    
+    print(f"Total number of records ({block_count})")
     
     print("-------------------------------------------")
     print("Total number of records:\n")
