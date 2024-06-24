@@ -5,9 +5,7 @@ A record to store the P2Pool daemon and the date and time that the message appea
 log file.
 """
 
-import persistent
-
-class BlockFoundEvent(persistent.Persistent):
+class BlockFoundEvent():
 
   def __init__(self, pool_name, timestamp):
     self._pool_name = pool_name
@@ -23,16 +21,6 @@ class BlockFoundEvent(persistent.Persistent):
       self._timestamp = new_timestamp
     return self._timestamp
 
-  def __lt__(self, other):
-    return self.timestamp() < other.timestamp()
-  def __le__(self, other):
-    return self.timestamp() <= other.timestamp()
-  def __eq__(self, other):
-    return self.timestamp() == other.timestamp()
-  def __ne__(self, other):
-    return self.timestamp() != other.timestamp()
-  def __hash__(self):
-    return hash(self.timestamp())
   def __str__(self):
     return f"Block found in {self.pool_name()} at {self.timestamp()}"
   

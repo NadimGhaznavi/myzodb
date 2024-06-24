@@ -19,7 +19,7 @@ for project_dir in project_dirs:
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from MiningZEO.MiningZEO import MiningZEO
+from MiningMongoDb.MiningMongoDb import MiningMongoDb
 from BlockFoundEvent.BlockFoundEvent import BlockFoundEvent
 from ShareFoundEvent.ShareFoundEvent import ShareFoundEvent
 from XMRTransaction.XMRTransaction import XMRTransaction
@@ -50,7 +50,7 @@ class P2Pool():
     print(f"Monitoring log file ({self.p2pool_log()})")
     count = 0
 
-    db = MiningZEO()
+    db = MiningMongoDb()
 
     while True:
       count = count + 1
@@ -115,7 +115,7 @@ class P2Pool():
         print(f"  Amount    : {payout_amount}")
         print(f"  Timestamp : {timestamp}")
         
-        xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, timestamp)
+        xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, timestamp, 'Mining')
         db.add_xmr_transaction(xmr_transaction)
       
   def p2pool_log(self):

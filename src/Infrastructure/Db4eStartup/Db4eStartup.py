@@ -63,14 +63,14 @@ class Db4eStartup():
     return self._action
 
   def print_status(self):
-    print(f"---------- Db4eStartup Status -------------")
-    print(f"Config file       : {ini_file}")
-    print(f"Environment       : {self._environ}")
-    print(f"Storage file      : {self._storage_file}")
-    print(f"P2P log           : {self._p2pool_log}")
-    print(f"Mongo DB name     : {self._db_name}")
-    print(f"Mongo server host : {self._mongodb_server}")
-    print(f"Mongo server port : {self._mongodb_port}")
+    print(f"\n---------- Db4eStartup Status -------------")
+    print(f"  Config file       : {ini_file}")
+    print(f"  Environment       : {self._environ}")
+    print(f"  Storage file      : {self._storage_file}")
+    print(f"  P2P log           : {self._p2pool_log}")
+    print(f"  Mongo DB name     : {self._db_name}")
+    print(f"  Mongo server host : {self._mongodb_server}")
+    print(f"  Mongo server port : {self._mongodb_port}")
     
   def p2pool_log(self):
     return self._p2pool_log

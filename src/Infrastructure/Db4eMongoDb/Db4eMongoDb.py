@@ -33,16 +33,8 @@ class Db4eMongoDb():
 
   def init_db(self):
     db = self.db()
-    if 'common' not in db.list_collection_names():
-      common_col = db["common"]
-      common_col.insert_one({'history': {}})
     if 'mining' not in db.list_collection_names():
       mining = db["mining"]
-
-  def history(self):
-    db = self.db()
-    common_col = db['common']
-    return common_col
 
   def mongodb_port(self):
     return self._mongodb_port
@@ -54,12 +46,6 @@ class Db4eMongoDb():
     print("\n---------- Db4eMongoDb Status -------------")
     print(f"  MongoDb server : {self._mongodb_server}")
     print(f"  MongoDb port   : {self._mongodb_port}")
-    print("----------- History -----------------------")
-    history = self.history()
-    for doc in history.find():
-      print(doc)
-      
-        
 
   def db(self):
     mongodb_server = self.mongodb_server()

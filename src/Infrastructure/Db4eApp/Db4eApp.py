@@ -4,7 +4,6 @@ Infrastructure/Db4eApp/Db4eApp.py
 """
 
 import sys
-
 from ZODB.FileStorage import FileStorage
 from ZODB.DB import DB
 from ZODB.PersistentMapping import PersistentMapping
@@ -21,8 +20,8 @@ for project_dir in project_dirs:
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from Db4eZEO.Db4eZEO import Db4eZEO
-from P2Pool.P2Pool import P2Pool
+from Db4eMongoDb.Db4eMongoDb import Db4eMongoDb
+from MiningApp.MiningApp import MiningApp
 
 class Db4eApp():
   def __init__(self):
@@ -34,29 +33,21 @@ class Db4eApp():
       print("\n---------- App Menu -----------------------")
       print("  Menu options:")
       print("    (S)tatus")
-      print("    (D)atabase 4 Everything")
-      print("    (P)2Pool Menu")
-      print("    (Z)EO Menu")
-      print("    E(x)it")
-      choice = input("  Enter your choice [SDPX]: ")
+      print("    (M)ining Menu")
+      print("    (E)xit")
+      choice = input("  Enter your choice [SME]: ")
 
       if choice == "S" or choice == "s":
         startup = Db4eStartup()
         startup.print_status()
-        
-      elif choice == "D" or choice == "d":
-        db = Db4eZEO()
+        db = Db4eMongoDb()
         db.print_status()
-
-      elif choice == "P" or choice == "p":
-        pool = P2Pool()
-        pool.menu()
-
-      elif choice == "Z" or choice == "z":
-        zeo = Db4eZEO()
-        zeo.menu()
+        
+      elif choice == "M" or choice == "m":
+        mining_app = MiningApp()
+        mining_app.menu()
       
-      elif choice == "X" or choice == "x":
+      elif choice == "E" or choice == "e":
         keep_looping = False
 
       else:
