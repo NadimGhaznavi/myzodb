@@ -4,8 +4,6 @@ Mining/P2Pool/P2Pool.py
 import os, sys
 from datetime import datetime
 import time
-from persistent.list import PersistentList
-import transaction
 import re
 
 # Append the Infrastructure directory to the Python path
