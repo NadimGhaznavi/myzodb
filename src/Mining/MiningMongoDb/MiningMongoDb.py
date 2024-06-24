@@ -3,8 +3,6 @@
 Mining/MiningMongoDb/MiningMongoDb.py
 """
 import sys
-from persistent.list import PersistentList
-import transaction
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
