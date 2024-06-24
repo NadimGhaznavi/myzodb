@@ -4,10 +4,6 @@ Infrastructure/Db4eApp/Db4eApp.py
 """
 
 import sys
-from ZODB.FileStorage import FileStorage
-from ZODB.DB import DB
-from ZODB.PersistentMapping import PersistentMapping
-import transaction
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
