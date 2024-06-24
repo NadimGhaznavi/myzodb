@@ -2,7 +2,7 @@
 Mining/P2Pool/P2Pool.py
 """
 import os, sys
-import datetime
+from datetime import datetime
 import time
 from persistent.list import PersistentList
 import transaction
@@ -54,7 +54,7 @@ class P2Pool():
 
     while True:
       count = count + 1
-      if count % 10 == 0:
+      if count % 1000 == 0:
         time.sleep(1)
       log_line = p2log.readline()
       if not log_line:
@@ -70,7 +70,7 @@ class P2Pool():
       if match:
         # "Block Found" event
         timestamp_str = match.group('timestamp')
-        timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
+        timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
         print("Event : BLOCK FOUND EVENT")
         print(f"  P2Pool    : {self._name}")
         print(f"  Timestamp : {timestamp}")
@@ -78,38 +78,48 @@ class P2Pool():
         db.add_block_found_event(event)
 
       ### SHARE FOUND events
-      # NOTICE 2024-06-19 16:32:00.5836 StratumServer SHARE FOUND: mainchain height 3174862, sidechain height 7944668, diff 107488844, client 192.168.1.5:39114, user maia, effort 37.115%
-      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+StratumServer SHARE FOUND.*mainchain height \d+, sidechain height \d+, diff (\d+), client [^:]+:\d+, user (\S+), effort (\d+\.\d+%)$"
+      # 2024-06-19 16:32:00.5836 StratumServer SHARE FOUND: mainchain height 3174862, sidechain height 7944668, diff 107488844, client 192.168.1.5:39114, user maia, effort 37.115%
+      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+StratumServer SHARE FOUND.*mainchain height \d+, sidechain height \d+, diff (?P<difficulty>\d+), client (?P<ip_address>[^:]+):\d+, user (?P<user>\S+), effort (?P<effort>\d+\.\d+%)$"
       match = re.search(pattern, log_line)
       if match:
         # "Share Found" event
         timestamp_str = match.group('timestamp')
-        timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
-      
-        difficulty = int(match.group(2))
-        miner = match.group(3)
+        try:
+          timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
+        except Exception as e:
+          print(f"Failed to parse timestamp {timestamp_str}: {e}")
+          continue
 
-        effort_str = match.group(4)
-        effort = float(effort_str.rstrip('%'))  # Remove the '%' before converting to float
+        difficulty = int(match.group('difficulty'))
+        miner = match.group('user')
+        effort_str = match.group('effort')
+
+        try:
+          effort = float(effort_str.rstrip('%'))  # Remove the '%' before converting to float
+        except ValueError as e:
+          print(f"Failed to convert effort {effort_str} to float: {e}")
+          continue
+
+        ip_addr = match.group('ip_address')
+
+        event = ShareFoundEvent(miner, effort, difficulty, ip_addr, timestamp)
+        db.add_share_found_event(event)
       
-        print("Event : SHARE FOUND EVENT")
-        print(f"  Miner      : {miner}")
-        print(f"  Effort     : {effort}")
-        print(f"  Difficulty : {difficulty}")
-        print(f"  Timestamp  : {timestamp}")
-        event = ShareFoundEvent(miner, effort, difficulty, timestamp)
+        print(f"Event : SHARE FOUND EVENT - Miner: {miner}, Effort: {effort}, Difficulty: {difficulty}, IP address: {ip_addr}, Timestamp: {timestamp}")
+        event = ShareFoundEvent(miner, effort, difficulty, ip_addr, timestamp)
         db.add_share_found_event(event)
 
       ### XMR TRANSACTION events
       # NOTICE  2024-04-05 08:13:56.8792 P2Pool Your wallet 48wY7nYBsQNSw7v4LjoNnvCtk1Y6GLNVmePGrW82gVhYhQtWJFHi6U6G3X5d7JN2ucajU9SeBcijET8ZzKWYwC3z3Y6fDEG got a payout of 0.000474598149 XMR in block 3120548
-      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(\S+)\s+got a payout of\s+(\d\.\d+)\s+XMR in block\s+(\d+)$"
+      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(?P<wallet_address>\S+)\s+got a payout of\s+(?P<payout_amount>\d\.\d+)\s+XMR in block\s+(?P<block_number>\d+)$"
       match = re.search(pattern, log_line)
-      if match:
-        wallet_address = match.group(2)
-        payout_amount = float(match.group(3))
-        timestamp_str = match.group('timestamp')
-        timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
 
+      if match:
+        wallet_address = match.group('wallet_address')
+        payout_amount = float(match.group('payout_amount'))
+        timestamp = datetime.strptime(match.group('timestamp'), "%Y-%m-%d %H:%M:%S.%f")
+        block_number = int(match.group('block_number'))
+        
         print("XMR TRANSACTION FOUND")
         print(f"  Wallet    : {wallet_address[0:4]}...")
         print(f"  Amount    : {payout_amount}")

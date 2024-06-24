@@ -4,28 +4,16 @@ Mining/ShareFoundEvent/ShareFoundEvent.py
 A record to store the Miner and the timestamp when the message appeared in the P2Pool log.
 """
 
-import persistent
+class ShareFoundEvent():
 
-class ShareFoundEvent(persistent.Persistent):
-
-  def __init__(self, miner, effort, difficulty, timestamp):
+  def __init__(self, miner, effort, difficulty, ip_addr, timestamp):
     self._miner = miner
     self._effort = effort
     self._difficulty = difficulty
+    self._ip_addr = ip_addr
     self._timestamp = timestamp
     self._ip = None
     
-
-  def __lt__(self, other):
-    return self.timestamp() < other.timestamp()
-  def __le__(self, other):
-    return self.timestamp() <= other.timestamp()
-  def __eq__(self, other):
-    return self.timestamp() == other.timestamp()
-  def __ne__(self, other):
-    return self.timestamp() != other.timestamp()
-  def __hash__(self):
-    return hash(self.timestamp())
   def __str__(self):
     return f"Share found by {self._miner} at {self._timestamp}"
   
@@ -43,6 +31,11 @@ class ShareFoundEvent(persistent.Persistent):
     if new_difficulty:
       self._difficulty = new_difficulty
     return self._difficulty
+  
+  def ip_addr(self, new_ip_addr=None):
+    if new_ip_addr:
+      self._ip_addr = new_ip_addr
+    return self._ip_addr
 
   def timestamp(self, new_timestamp=None):
     if new_timestamp:
