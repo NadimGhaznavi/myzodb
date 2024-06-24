@@ -29,7 +29,7 @@ class P2Pool():
     self._hostname = None
     self._ip_addr = None
     self._wallet = None
-    self._miners = PersistentList
+    self._miners = []
 
     startup = Db4eStartup()
     self._p2pool_log = startup.p2pool_log()
