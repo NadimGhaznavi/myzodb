@@ -83,7 +83,7 @@ class P2Pool():
         # "Share Found" event
         timestamp_str = match.group('timestamp')
         try:
-          timestamp = datetime.datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
+          timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S.%f")
         except Exception as e:
           print(f"Failed to parse timestamp {timestamp_str}: {e}")
           continue
@@ -109,21 +109,22 @@ class P2Pool():
 
       ### XMR TRANSACTION events
       # NOTICE  2024-04-05 08:13:56.8792 P2Pool Your wallet 48wY7nYBsQNSw7v4LjoNnvCtk1Y6GLNVmePGrW82gVhYhQtWJFHi6U6G3X5d7JN2ucajU9SeBcijET8ZzKWYwC3z3Y6fDEG got a payout of 0.000474598149 XMR in block 3120548
-      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(?P<wallet_address>\S+)\s+got a payout of\s+(?P<payout_amount>\d\.\d+)\s+XMR in block\s+(?P<block_number>\d+)$"
+      pattern = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\s+P2Pool\s+Your wallet\s+(?P<wallet_address>\S+)\s+got a payout of\s+(?P<payout_amount>\d\.\d+)\s+XMR in block\s+(?P<block_height>\d+)$"
       match = re.search(pattern, log_line)
 
       if match:
         wallet_address = match.group('wallet_address')
         payout_amount = float(match.group('payout_amount'))
         timestamp = datetime.strptime(match.group('timestamp'), "%Y-%m-%d %H:%M:%S.%f")
-        block_number = int(match.group('block_number'))
+        block_height = int(match.group('block_height'))
         
         print("XMR TRANSACTION FOUND")
-        print(f"  Wallet    : {wallet_address[0:4]}...")
-        print(f"  Amount    : {payout_amount}")
-        print(f"  Timestamp : {timestamp}")
+        print(f"  Wallet       : {wallet_address[0:4]}...")
+        print(f"  Amount       : {payout_amount}")
+        print(f"  Block number : {block_height}")
+        print(f"  Timestamp    : {timestamp}")
         
-        xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, timestamp, 'Mining')
+        xmr_transaction = XMRTransaction('P2Pool', wallet_address, payout_amount, block_height, '', timestamp, 'Mining')
         db.add_xmr_transaction(xmr_transaction)
       
   def p2pool_log(self):

@@ -28,22 +28,22 @@ class Db4eApp():
     while keep_looping:
       print("\n---------- App Menu -----------------------")
       print("  Menu options:")
-      print("    (S)tatus")
-      print("    (M)ining Menu")
-      print("    (E)xit")
-      choice = input("  Enter your choice [SME]: ")
+      print("    1. Status")
+      print("    2. Mining Menu")
+      print("    3. Exit")
+      choice = input("  Enter your choice: ")
 
-      if choice == "S" or choice == "s":
+      if choice == "1":
         startup = Db4eStartup()
         startup.print_status()
         db = Db4eMongoDb()
         db.print_status()
         
-      elif choice == "M" or choice == "m":
+      elif choice == "2":
         mining_app = MiningApp()
         mining_app.menu()
       
-      elif choice == "E" or choice == "e":
+      elif choice == "3" or choice == "X" or choice == "x":
         keep_looping = False
 
       else:

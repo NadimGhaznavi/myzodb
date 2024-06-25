@@ -2,7 +2,9 @@
 """
 Mining/MiningMongoDb/MiningMongoDb.py
 """
+import csv
 import sys
+from datetime import datetime, timedelta
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
@@ -20,13 +22,6 @@ from ShareFoundEvent.ShareFoundEvent import ShareFoundEvent
 from XMRTransaction.XMRTransaction import XMRTransaction
 
 class MiningMongoDb():
-
-  def insert_uniq_one(self, new_event):
-    db = self.db()
-    mining_col = db["mining"]
-    timestamp = new_event['timestamp']
-    if not mining_col.find_one({'timestamp': timestamp}):
-      mining_col.insert_one(new_event)
 
   def add_block_found_event(self, block_found_event):
     pool_name = block_found_event.pool_name()
@@ -80,6 +75,28 @@ class MiningMongoDb():
     events = mining_col.find({'doc_type': event_type})
     return events
     
+  def import_wallet_csv(self, wallet_csv, wallet_address):
+    csv_file = csv.reader(open(wallet_csv))
+
+    first_row = True
+    for aRow in csv_file:
+      ### CSV File format
+      # blockHeight,epoch,date,direction,amount,atomicAmount,fee,txid,label,subaddrAccount,paymentId,description
+      # 3177687,1719152144,2024-06-23 10:15:44,in,0.000281461344,281461344,,9ac844bfe5c7b6a2f77130a8da2a4a30d0ab65f163f472863d3fe26910559e02,"Primary account",0,,""
+      if first_row == True:
+        first_row = False
+      else:
+        sender = "P2Pool"
+        receiver = ""
+
+
+  def insert_uniq_one(self, new_event):
+    db = self.db()
+    mining_col = db["mining"]
+    timestamp = new_event['timestamp']
+    if not mining_col.find_one({'timestamp': timestamp}):
+      mining_col.insert_one(new_event)
+
   def print_status(self):
     print("---------- MiningMongoDb Status -----------")
 

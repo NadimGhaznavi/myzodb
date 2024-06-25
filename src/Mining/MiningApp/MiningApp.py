@@ -23,19 +23,26 @@ class MiningApp():
     while keep_looping:
       print("\n---------- Mining Menu --------------------")
       print("  Menu options:")
-      print("    (S)tatus")
-      print("    (M)onitor P2Pool log")
-      print("    (E)xit")
-      choice = input("  Enter your choice [SME]: ")
+      print("    1. Status")
+      print("    2. Monitor P2Pool log")
+      print("    3. Import Wallet data")
+      print("    4. Exit")
+      choice = input("  Enter your choice: ")
 
-      if choice == "M" or choice == "m":
+      if choice == "1":
+        self.print_status()
+
+      elif choice == "2":
         p2pool = P2Pool()
         p2pool.monitor_log()
 
-      elif choice == "S" or choice == "s":
-        self.print_status()
+      elif choice == "3":
+        wallet_csv = input("  Enter the full path to the wallet CSV file: ")
+        wallet_addr = input("  Enter the wallet address: ")
+        db = MiningMongoDb()
+        db.import_wallet_csv(wallet_csv, wallet_addr)
 
-      elif choice == "E" or choice == "e":
+      elif choice == "4" or choice == "X" or choice == "x":
         keep_looping = False
 
       else:
