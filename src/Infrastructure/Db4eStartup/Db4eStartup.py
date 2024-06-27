@@ -58,6 +58,7 @@ class Db4eStartup():
     self._db_name = config[environ]['db_name']
     self._mongodb_server = config[environ]['mongodb_server']
     self._mongodb_port = config[environ]['mongodb_port']
+    self._wallet_csv = config[environ]['wallet_csv']
     
   def action(self):
     return self._action
@@ -71,6 +72,7 @@ class Db4eStartup():
     print(f"  Mongo DB name     : {self._db_name}")
     print(f"  Mongo server host : {self._mongodb_server}")
     print(f"  Mongo server port : {self._mongodb_port}")
+    print(f"  Wallet CSV file   : {self._wallet_csv}")
     
   def p2pool_log(self):
     return self._p2pool_log
@@ -90,8 +92,8 @@ class Db4eStartup():
   def mongodb_port(self):
     return int(self._mongodb_port)
 
-  def zeo_server_config(self):
-    return self._zeo_server_config
+  def wallet_csv(self):
+    return self._wallet_csv
 
   def args(self):
     """
