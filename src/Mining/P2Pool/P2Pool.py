@@ -17,7 +17,7 @@ for project_dir in project_dirs:
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from MiningMongoDb.MiningMongoDb import MiningMongoDb
+from MiningDb.MiningDb import MiningDb
 from BlockFoundEvent.BlockFoundEvent import BlockFoundEvent
 from ShareFoundEvent.ShareFoundEvent import ShareFoundEvent
 from XMRTransaction.XMRTransaction import XMRTransaction
@@ -48,7 +48,7 @@ class P2Pool():
     print(f"Monitoring log file ({self.p2pool_log()})")
     count = 0
 
-    db = MiningMongoDb()
+    db = MiningDb()
 
     while True:
       count = count + 1

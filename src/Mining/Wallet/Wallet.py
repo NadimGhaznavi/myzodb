@@ -13,7 +13,7 @@ project_dirs = [
 for project_dir in project_dirs:
   sys.path.append(project_dir)
 
-from MiningMongoDb.MiningMongoDb import MiningMongoDb
+from WalletDb.WalletDb import WalletDb
 from Db4eStartup.Db4eStartup import Db4eStartup
 
 class Wallet():
@@ -23,11 +23,24 @@ class Wallet():
     self._wallet_csv = startup.wallet_csv()
 
   def load_wallet_csv(self):
-    print(f"\nLoading wallet csv data ({self.wallet_csv()})")
-    
+    wallet_file = self.wallet_csv()
+    print(f"\nLoading wallet csv data ({wallet_file})")
+    csv_handle = csv.reader(open(wallet_file))
+
+    first_row = True
+    for aRow in csv_handle:
+      ### CSV File format
+      # blockHeight,epoch,date,direction,amount,atomicAmount,fee,txid,label,subaddrAccount,paymentId,description
+      # 3177687,1719152144,2024-06-23 10:15:44,in,0.000281461344,281461344,,9ac844bfe5c7b6a2f77130a8da2a4a30d0ab65f163f472863d3fe26910559e02,"Primary account",0,,""
+      if first_row == True:
+        first_row = False
+      else:
+        sender = "P2Pool"
+        receiver = ""
+
   def print_status(self):
-    db = MiningMongoDb()
-    num_transactions = db.num_wallet_transactions()
+    db = WalletDb()
+    num_transactions = db.num_transactions()
     print("\n---------- Wallet Status ------------------")
     print(f"  Number of XMR Transactions: {num_transactions}")
   

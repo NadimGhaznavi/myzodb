@@ -7,16 +7,16 @@ import sys
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
-  "/opt/prod/db4e/src/Infrastructure", 
-  "/opt/prod/db4e/src/Mining", 
-  "/opt/prod/db4e/src/Reports"
+  "./db4e/src/Infrastructure", 
+  "./db4e/src/Mining", 
+  "./db4e/src/Reports"
 ]
 for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
-from Db4eMongoDb.Db4eMongoDb import Db4eMongoDb
+from Db4eDb.Db4eDb import Db4eDb
 from MiningApp.MiningApp import MiningApp
 
 class Db4eApp():
@@ -36,7 +36,7 @@ class Db4eApp():
       if choice == "1":
         startup = Db4eStartup()
         startup.print_status()
-        db = Db4eMongoDb()
+        db = Db4eDb()
         db.print_status()
         
       elif choice == "2":

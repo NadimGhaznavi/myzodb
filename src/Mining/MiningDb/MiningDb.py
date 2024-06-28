@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Mining/MiningMongoDb/MiningMongoDb.py
+Mining/MiningDb/MiningDb.py
 """
 import csv
 import sys
@@ -8,20 +8,20 @@ from datetime import datetime, timedelta
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
-  "/opt/prod/db4e/src/Infrastructure", 
-  "/opt/prod/db4e/src/Mining", 
-  "/opt/prod/db4e/src/Reports"
+  "./db4e/src/Infrastructure", 
+  "./db4e/src/Mining", 
+  "./db4e/src/Reports"
 ]
 for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 # Import required db4e modules.
-from Db4eMongoDb.Db4eMongoDb import Db4eMongoDb
+from Db4eDb.Db4eDb import Db4eDb
 from BlockFoundEvent.BlockFoundEvent import BlockFoundEvent
 from ShareFoundEvent.ShareFoundEvent import ShareFoundEvent
 from XMRTransaction.XMRTransaction import XMRTransaction
 
-class MiningMongoDb():
+class MiningDb():
 
   def add_block_found_event(self, block_found_event):
     pool_name = block_found_event.pool_name()
@@ -66,7 +66,7 @@ class MiningMongoDb():
     self.insert_uniq_one(new_transaction)
   
   def db(self):
-    db = Db4eMongoDb()
+    db = Db4eDb()
     return db.db()
 
   def get_events(self, event_type):
@@ -89,7 +89,6 @@ class MiningMongoDb():
         sender = "P2Pool"
         receiver = ""
 
-
   def insert_uniq_one(self, new_event):
     db = self.db()
     mining_col = db["mining"]
@@ -98,7 +97,7 @@ class MiningMongoDb():
       mining_col.insert_one(new_event)
 
   def print_status(self):
-    print("---------- MiningMongoDb Status -----------")
+    print("---------- MiningDb Status ----------------")
 
     events = self.get_events('xmr_transaction')
     #print(f"-- XMR Transactions ({len(events)})")

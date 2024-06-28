@@ -14,7 +14,7 @@ for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 from P2Pool.P2Pool import P2Pool
-from MiningMongoDb.MiningMongoDb import MiningMongoDb
+from MiningDb.MiningDb import MiningDb
 
 class MiningApp():
 
@@ -39,7 +39,7 @@ class MiningApp():
       elif choice == "3":
         wallet_csv = input("  Enter the full path to the wallet CSV file: ")
         wallet_addr = input("  Enter the wallet address: ")
-        db = MiningMongoDb()
+        db = MiningDb()
         db.import_wallet_csv(wallet_csv, wallet_addr)
 
       elif choice == "4" or choice == "X" or choice == "x":
@@ -50,7 +50,7 @@ class MiningApp():
 
   def print_status(self):
     print("\n---------- Mining App Status --------------")
-    miningDb = MiningMongoDb()
+    miningDb = MiningDb()
     miningDb.print_status()
 
 def main():

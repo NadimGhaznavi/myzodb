@@ -17,7 +17,7 @@ for project_dir in project_dirs:
 # Import required db4e modules.
 from Db4eStartup.Db4eStartup import Db4eStartup
 
-class Db4eMongoDb():
+class Db4eDb():
 
   def __init__(self):
     startup = Db4eStartup()

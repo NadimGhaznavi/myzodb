@@ -7,9 +7,9 @@ import sys
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
-  "/opt/prod/db4e/src/Infrastructure", 
-  "/opt/prod/db4e/src/Mining", 
-  "/opt/prod/db4e/src/Reports"
+  "./db4e/src/Infrastructure", 
+  "./db4e/src/Mining", 
+  "./db4e/src/Reports"
 ]
 for project_dir in project_dirs:
   sys.path.append(project_dir)
