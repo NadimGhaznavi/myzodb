@@ -7,17 +7,17 @@ import sys
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
-  "./db4e/src/Infrastructure", 
-  "./db4e/src/Mining", 
-  "./db4e/src/Reports"
+  "/opt/prod/db4e/src/Infrastructure", 
+  "/opt/prod/db4e/src/Mining", 
+  "/opt/prod/db4e/src/Reports"
 ]
 for project_dir in project_dirs:
   sys.path.append(project_dir)
 
 # Import required db4e modules.
+from P2Pool.P2Pool import P2Pool
 from Db4eStartup.Db4eStartup import Db4eStartup
 from Db4eApp.Db4eApp import Db4eApp
-from P2Pool.P2Pool import P2Pool
 
 def main():
   startup = Db4eStartup()

@@ -8,9 +8,9 @@ from datetime import datetime, timedelta
 
 # Append the Infrastructure directory to the Python path
 project_dirs = [ 
-  "./db4e/src/Infrastructure", 
-  "./db4e/src/Mining", 
-  "./db4e/src/Reports"
+  "/opt/db4e/src/Infrastructure", 
+  "/opt/db4e/src/Mining", 
+  "/opt/db4e/src/Reports"
 ]
 for project_dir in project_dirs:
   sys.path.append(project_dir)
@@ -74,20 +74,6 @@ class MiningDb():
     mining_col = db["mining"]
     events = mining_col.find({'doc_type': event_type})
     return events
-    
-  def import_wallet_csv(self, wallet_csv, wallet_address):
-    csv_file = csv.reader(open(wallet_csv))
-
-    first_row = True
-    for aRow in csv_file:
-      ### CSV File format
-      # blockHeight,epoch,date,direction,amount,atomicAmount,fee,txid,label,subaddrAccount,paymentId,description
-      # 3177687,1719152144,2024-06-23 10:15:44,in,0.000281461344,281461344,,9ac844bfe5c7b6a2f77130a8da2a4a30d0ab65f163f472863d3fe26910559e02,"Primary account",0,,""
-      if first_row == True:
-        first_row = False
-      else:
-        sender = "P2Pool"
-        receiver = ""
 
   def insert_uniq_one(self, new_event):
     db = self.db()
