@@ -15,6 +15,7 @@ for project_dir in project_dirs:
 
 from WalletDb.WalletDb import WalletDb
 from Db4eStartup.Db4eStartup import Db4eStartup
+from WalletTransaction.WalletTransaction import WalletTransaction
 
 class Wallet():
 
@@ -35,15 +36,25 @@ class Wallet():
       if first_row == True:
         first_row = False
       else:
-        sender = "P2Pool"
-        receiver = ""
+        block_num = aRow[0]
+        timestamp = aRow[2]
+        amount = aRow[4]
+        fee = aRow[6]
+        txid = aRow[7]
+        transaction = WalletTransaction(block_num, timestamp, amount, fee, txid, 'P2Pool')
+        db = WalletDb()
+        db.add_transaction(transaction)
 
   def print_status(self):
     db = WalletDb()
     num_transactions = db.num_transactions()
     print("\n---------- Wallet Status ------------------")
+    print(f"  Wallet CSV File: {self._wallet_csv}")
     print(f"  Number of XMR Transactions: {num_transactions}")
-  
+  memo
+memo
+memo
+memo
   def wallet_csv(self, new_wallet_csv=None):
     if new_wallet_csv:
       self._wallet_csv = new_wallet_csv

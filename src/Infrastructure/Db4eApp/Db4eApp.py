@@ -9,7 +9,8 @@ import sys
 project_dirs = [ 
   "/opt/prod/db4e/src/Infrastructure", 
   "/opt/prod/db4e/src/Mining", 
-  "/opt/prod/db4e/src/Reports"
+  "/opt/prod/db4e/src/Reports",
+  "/opt/prod/db4e/src/JobSearch"
 ]
 for project_dir in project_dirs:
   sys.path.append(project_dir)
@@ -18,6 +19,7 @@ for project_dir in project_dirs:
 from Db4eStartup.Db4eStartup import Db4eStartup
 from Db4eDb.Db4eDb import Db4eDb
 from MiningApp.MiningApp import MiningApp
+from JobSearchApp.JobSearchApp import JobSearchApp
 
 class Db4eApp():
   def __init__(self):
@@ -30,7 +32,8 @@ class Db4eApp():
       print("  Menu options:")
       print("    1. Status")
       print("    2. Mining Menu")
-      print("    3. Exit")
+      print("    3. Job Search Menu")
+      print("    4. Exit")
       choice = input("  Enter your choice: ")
 
       if choice == "1":
@@ -43,7 +46,11 @@ class Db4eApp():
         mining_app = MiningApp()
         mining_app.menu()
       
-      elif choice == "3" or choice == "X" or choice == "x":
+      elif choice == "3":
+        job_app = JobSearchApp()
+        job_app.menu()
+
+      elif choice == "4" or choice == "X" or choice == "x":
         keep_looping = False
 
       else:

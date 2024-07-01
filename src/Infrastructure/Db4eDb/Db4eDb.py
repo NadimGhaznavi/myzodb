@@ -35,6 +35,8 @@ class Db4eDb():
     db = self.db()
     if 'mining' not in db.list_collection_names():
       mining = db["mining"]
+    if 'jobsearch' not in db.list_collection_names():
+      jobsearch = db["job_search"]
 
   def mongodb_port(self):
     return self._mongodb_port
